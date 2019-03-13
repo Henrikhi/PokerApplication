@@ -7,6 +7,11 @@ __testi2__
 
 _Vielä **tällainen** testi_
 
+[komentorivi.txt] (https://github.com/Henrikhi/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+
+[gitlog.txt] (https://github.com/Henrikhi/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+
+
 * Asia 1
 * Asia 2
   * Asia 2a
