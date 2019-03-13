@@ -1,0 +1,103 @@
+commit befe6a9e8e53d4288ae837fd10b379dc5d0720e6
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:29:08 2019 +0200
+
+    file1 pois, file2 -> 22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 91e18f9847f48dd3afdeecfe27c99ef77800815e
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:25:13 2019 +0200
+
+    tiedostoja file1,2,3 lisätty
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit b00b5d18cb0d07783f46be172617e10bca113a20
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:20:39 2019 +0200
+
+    eka ja kolmas muokattu
+
+ eka.txt    | 13 ++++++-------
+ kolmas.txt |  7 +++++++
+ 2 files changed, 13 insertions(+), 7 deletions(-)
+
+commit 87113fdcbe501c3b3586ceece06c1f69ed302fe2
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:18:39 2019 +0200
+
+    tiedosto nimetty eka
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit afcfc33b248c97af84af2f3d75179a520d76f498
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:17:43 2019 +0200
+
+    toinen poistettu
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a8cc6e8f55b1f753bea37697e6dc0f46ece55aa4
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:14:35 2019 +0200
+
+    tiedosto tekstiä poistettu ja lisätty
+
+ tiedosto.txt | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
+
+commit 5f9432430f35265be5ca567836a4ac4e03616d25
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:13:42 2019 +0200
+
+    tiedosto paljon tekstiä
+
+ tiedosto.txt | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+commit afa24d1884f792f16c8a838f334b28f336664047
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:09:00 2019 +0200
+
+    stuff lisätty
+
+ stuff/jotakin | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6494dff6bf2f207a1176d1af5b449d029186ab62
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:07:52 2019 +0200
+
+    kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7b5cef93fcb3315fc4cab044ee62dc7c824ab9da
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:06:08 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 51b2590efa398f9e8c2cd82b6f7c7f929781e16f
+Author: Henrik <henrik.hirvonen77@gmail.com>
+Date:   Wed Mar 13 13:04:28 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
