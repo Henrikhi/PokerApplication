@@ -1,4 +1,4 @@
-*Tässä taitaapi olla otsikko!*
+# *Tässä taitaapi olla otsikko!*
 
 _Ensimmäinen luku_
 
@@ -27,4 +27,4 @@ Ja vielä sitaatti:
 > Hoh hoh hoo
 
 Ja mikäs tämä on?
-'<addr>' elemement here instead
+`<addr>` elemement here instead
