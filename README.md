@@ -7,5 +7,3 @@
 [gitlog.txt](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
 [komentorivi.txt](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-Tässäpä testimuutos ;)
