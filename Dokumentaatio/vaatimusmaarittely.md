@@ -35,10 +35,8 @@ Tuplaaminen: Ruudun alareuna ja yläreuna on kuten pelinäkymässä, mutta keske
 ### Kirjautumisen jälkeen
 
 - pelinäkymä käynnistyy
-
--pelaaja voi käynnistää pelin napista "play" tai lopettaa napista "stop"
-
-- pelaaminen vähentää saldoa panoksen verran, ja jakaa viisi korttia näkyville, joista pelaaja voi kortteja klikkaamalla lukita haluamansa (0-5). Tässä vaiheessa peliä ei voi lopettaa, vaan pelaajan tulee painaa uudestaan "pelaa", kun on lukinnut korttinsa. Tämän jälkeen lukitsemattomat kortit korvataan uusilla korteilla, ja ruutuun ilmestyy onnitteluteksti ja voiton summa, tai pahoitteluteksti, jos pelaaja ei voittanut mitään. Jos pelaaja voitti, hän voi kerätä voitot talteen (collect) tai tuplata (double). Tuplaaminen vie tuplausnäkymään. Jos pelaaja ei voittanut mitään, hän voi jatkaa pelaamista, mikäli hänellä on vielä saldoa (winnings) tallella. Jos krediitit on vähissä, voi niitä helposti lisätä klikkaamalla "insert coins".
+  - pelaaja voi käynnistää pelin napista "play" tai lopettaa napista "stop"
+    - pelaaminen vähentää saldoa panoksen verran, ja jakaa viisi korttia näkyville, joista pelaaja voi kortteja klikkaamalla lukita haluamansa (0-5). Tässä vaiheessa peliä ei voi lopettaa, vaan pelaajan tulee painaa uudestaan "pelaa", kun on lukinnut korttinsa. Tämän jälkeen lukitsemattomat kortit korvataan uusilla korteilla, ja ruutuun ilmestyy onnitteluteksti ja voiton summa, tai pahoitteluteksti, jos pelaaja ei voittanut mitään. Jos pelaaja voitti, hän voi kerätä voitot talteen (collect) tai tuplata (double). Tuplaaminen vie tuplausnäkymään. Jos pelaaja ei voittanut mitään, hän voi jatkaa pelaamista, mikäli hänellä on vielä saldoa (winnings) tallella. Jos krediitit on vähissä, voi niitä helposti lisätä klikkaamalla "insert coins".
  
  - tuplausnäkymässä pelaajan tulee arvata, onko kortti pieni (small) vai suuri (high). Arvauksen jälkeen kortti paljastetaan. Jos pelaaja arvasi oikein, tuplautuu hänen edelliskierroksen voitto. Tämän jälkeen pelaaja voi tuplata uudestaan (double) tai lopettaa painamalla "stop" tai "collect", jolloin hänet palautetaan pelinäkymään. Mikäli pelaaja häviää tuplauksen, palautetaan hänet pelinäkymään.
  
