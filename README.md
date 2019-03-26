@@ -12,4 +12,4 @@
 
 [vaatimuusmäärittely](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/vaatimusmaarittely.md)
 
-[työaikakirjanpito](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/tuntikirjanpito)
+[työaikakirjanpito](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/tuntikirjanpito.md)
