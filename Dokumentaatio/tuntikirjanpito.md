@@ -4,4 +4,5 @@
 | :----:|:-----| :-----|
 | 23.3. | 1    | vaatimuusmäärittelyn tekeminen |
 | 26.3. | 1    | vaatimuusmäärittelyn tekeminen |
-| yht   | 2   | | 
+| 29.3. | 6    | pokerisovellusohjelman tekeminen. Käyttöliittymä ok, kortteja voi jakaa ja lukita. Saldo kasvaa jos voittaa jne. Käyttäjiä ei talleteta, ei voi tuplata eikä vaihtaa panosta, eikä rahaa voi lisätä, ja voi pelata vaikka rahat olisi loppu. |
+| yht   | 8   | | 
