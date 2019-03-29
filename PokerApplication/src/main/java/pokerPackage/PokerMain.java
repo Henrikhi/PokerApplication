@@ -17,6 +17,7 @@ public class PokerMain extends Application {
     private Scene doubling;
     private final int width = 800;
     private final int height = 600;
+    private boolean firstDealDone = false;
 
     public static void main(String[] args) {
         System.out.println("hello world!");
@@ -51,6 +52,7 @@ public class PokerMain extends Application {
         });
 
         //primary game scene
+        Hand hand = new Hand(); //initialize the hand
         BorderPane gameLayout = new BorderPane();
         HBox bottomButtons = new HBox();
         Button stop = new Button("stop");
@@ -62,8 +64,20 @@ public class PokerMain extends Application {
         gameLayout.setBottom(bottomButtons);
         game = new Scene(gameLayout, width, height);
         stop.setOnMouseClicked(stopClicked -> {
-        //log out the user!
-        primaryStage.setScene(frontPage);
+            //log out the user!
+            primaryStage.setScene(frontPage);
+        });
+        play.setOnMouseClicked(playClicked -> {
+            if (firstDealDone == false) { //fresh game
+                firstDealDone = true;
+                hand.deal5();
+                System.out.println(hand);
+                System.out.println(hand.checkHand());
+            } else {
+                firstDealDone = false;
+                hand.emptyHand();
+            }
+
         });
 
         primaryStage.setScene(frontPage); //app starts with frontpage scene
