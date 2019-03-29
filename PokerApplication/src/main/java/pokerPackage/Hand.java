@@ -18,6 +18,10 @@ public class Hand {
         this.deck = new DeckOfCards();
     }
 
+    public void printDeck() {
+        this.deck.printDeck();
+    }
+
     public Hand(Card first, Card second, Card third, Card fourth, Card fifth) {
         this.hand = new ArrayList<>();
         hand.add(first);
@@ -25,6 +29,10 @@ public class Hand {
         hand.add(third);
         hand.add(fourth);
         hand.add(fifth);
+    }
+
+    public ArrayList<Card> getHand() {
+        return hand;
     }
 
     @Override
@@ -35,7 +43,7 @@ public class Hand {
             System.out.println(this.hand.get(i).toString());
             builder.append(this.hand.get(i).toString());
         }
-        
+
         return message;
     }
 
@@ -52,11 +60,16 @@ public class Hand {
         this.hand.clear();
     }
 
-    public void replace(Card old) {
-        this.hand.remove(old);
-        this.deck.addToDeck(old);
+    public void replace(int cardNumber) {
+        Card oldCard = this.hand.get(cardNumber);
+        this.hand.remove(cardNumber);
         Card newCard = this.deck.dealRandomCard();
-        this.hand.add(newCard);
+        this.deck.addToDeck(oldCard);
+        this.hand.add(cardNumber, newCard);
+    }
+
+    public Card getCard(int cardNumber) {
+        return this.hand.get(cardNumber);
     }
 
     public void discard(Card card) {

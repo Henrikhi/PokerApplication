@@ -28,7 +28,13 @@ public class DeckOfCards {
         for (int i = 1; i <= 13; i++) {
             deck.add(new Card(i, suite));
         }
-        
+
+    }
+
+    public void printDeck() {
+        for (int i = 0; i < this.deck.size(); i++) {
+            System.out.println(this.deck.get(i));
+        }
     }
 
     public void addToDeck(Card newCard) {
