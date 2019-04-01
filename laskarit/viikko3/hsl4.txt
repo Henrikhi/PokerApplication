@@ -1,0 +1,24 @@
+title 4) HSL-tehtävä
+
+Main->HKLLaitehallinto: laitehallinto = new HKLLaitehallinto()
+Main->LataajaLaite: rautatietori = new LataajaLaite()
+Main->LukijaLaite: ratikk6 = new LukijaLaite()
+Main->LukijaLaite: bussi244 = new LukijaLaite()
+Main->HKLLaitehallinto: lisaaLataaja(rautatietori)
+Main->HKLLaitehallinto: lisaaLukija(ratikka6)
+Main->HKLLaitehallinto: lisaaLukija(bussi244)
+Main->Kioski: lippuLuukku = new Kioski()
+Main->Kioski: artonkortti = lippuluukku.ostaMatkakortti("Arto")
+Kioski->Matkakortti: artonkortti = new Matkakortti(Arto)
+Kioski-->Main: artonKortti
+Main->LataajaLaite: rautatietori.lataaArvoa(artonKortti, 3)
+LataajaLaite->Matkakortti: artonkortti.kasvataArvoa(3)
+Main->LukijaLaite: ratikku6.ostaLippu(artonKortti, 0)
+LukijaLaite->Matkakortti: artonkortti.getArvo()
+Matkakortti-->LukijaLaite: 3
+LukijaLaite->Matkakortti: artonkortti.vahennaArvoa(1.5)
+LukijaLaite-->Main: true
+Main->LukijaLaite: bussi244.ostaLippu(artonKortti, 2)
+LukijaLaite->Matkakortti: artonkortti.getArvo()
+Matkakortti-->LukijaLaite: 1.5
+LukijaLaite-->Main: false
