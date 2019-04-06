@@ -18,33 +18,8 @@ public class Hand {
         this.deck = new DeckOfCards();
     }
 
-    public void printDeck() {
-        this.deck.printDeck();
-    }
-
-    public Hand(Card first, Card second, Card third, Card fourth, Card fifth) {
-        this.hand = new ArrayList<>();
-        hand.add(first);
-        hand.add(second);
-        hand.add(third);
-        hand.add(fourth);
-        hand.add(fifth);
-    }
-
     public ArrayList<Card> getHand() {
         return hand;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        String message = new String(builder);
-        for (int i = 0; i < this.hand.size(); i++) {
-            System.out.println(this.hand.get(i).toString());
-            builder.append(this.hand.get(i).toString());
-        }
-
-        return message;
     }
 
     public void deal5() {
@@ -72,10 +47,6 @@ public class Hand {
         return this.hand.get(cardNumber);
     }
 
-    public void discard(Card card) {
-        this.hand.remove(card);
-        this.deck.addToDeck(card);
-    }
 
     public int checkHand() { //return the value of the hand. Returns an integer
         //winnings for the round = bet * returned integer.

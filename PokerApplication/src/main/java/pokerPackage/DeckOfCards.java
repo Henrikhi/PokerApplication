@@ -12,29 +12,23 @@ public class DeckOfCards {
         this.deck = new ArrayList<>();
         this.random = new Random();
 
-        String suite = CardSuits.CLUB;
+        String suite = "C"; //CLUB
+        for (int i = 1; i <= 13; i++) {
+            deck.add(new Card(i, suite)); //Card values are 1-13
+        }
+        suite = "S"; //SPADE
         for (int i = 1; i <= 13; i++) {
             deck.add(new Card(i, suite));
         }
-        suite = CardSuits.SPADE;
+        suite = "H"; //HEART
         for (int i = 1; i <= 13; i++) {
             deck.add(new Card(i, suite));
         }
-        suite = CardSuits.HEART;
-        for (int i = 1; i <= 13; i++) {
-            deck.add(new Card(i, suite));
-        }
-        suite = CardSuits.DIAMOND;
+        suite = "D"; //DIAMOND
         for (int i = 1; i <= 13; i++) {
             deck.add(new Card(i, suite));
         }
 
-    }
-
-    public void printDeck() {
-        for (int i = 0; i < this.deck.size(); i++) {
-            System.out.println(this.deck.get(i));
-        }
     }
 
     public void addToDeck(Card newCard) {

@@ -13,26 +13,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PokerMain extends Application {
-
+    
     private Scene frontPage;
     private Scene game;
     private Scene doubling;
     private final int width = 800;
     private final int height = 600;
     private boolean firstDealDone = false;
-    private boolean firstLocked = false;
-    private boolean secondLocked = false;
-    private boolean thirdLocked = false;
-    private boolean fourthLocked = false;
-    private boolean fifthLocked = false;
     private int winnings = 20;
     private int bet = 1;
-
+    private ArrayList<Button> cardButtons;
+    private boolean[] lockedCards = new boolean[5];
+    
     public static void main(String[] args) {
         System.out.println("hello world!");
         launch(PokerMain.class);
     }
-
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         System.out.println("The application is running");
@@ -78,17 +75,11 @@ public class PokerMain extends Application {
         Button play = new Button("play");
 
         //visual cards
-        ArrayList<Button> cardButtons = new ArrayList<>();
-        Button firstCardButton = new Button();
-        Button secondCardButton = new Button();
-        Button thirdCardButton = new Button();
-        Button fourthCardButton = new Button();
-        Button fifthCardButton = new Button();
-        cardButtons.add(firstCardButton);
-        cardButtons.add(secondCardButton);
-        cardButtons.add(thirdCardButton);
-        cardButtons.add(fourthCardButton);
-        cardButtons.add(fifthCardButton);
+        this.cardButtons = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            this.cardButtons.add(new Button());
+        }
+        
         cardButtons.forEach(card -> {
             card.setPrefSize(width / 10, height / 5);
             cardButtonsHBox.getChildren().add(card);
@@ -102,7 +93,7 @@ public class PokerMain extends Application {
         bottomButtons.setPadding(new Insets(20));
         gameLayout.setBottom(bottomButtons);
         gameLayout.setCenter(cardButtonsHBox);
-
+        
         game = new Scene(gameLayout, width, height);
         stop.setOnMouseClicked(stopClicked -> {
             //log out the user!
@@ -125,120 +116,53 @@ public class PokerMain extends Application {
 
             } else {
                 firstDealDone = false;
-
-                if (firstLocked == false) {
-                    hand.replace(0);
-                    Card newCard = hand.getCard(0);
-                    firstCardButton.setText(newCard.toString());
+                
+                for (int i = 0; i < 5; i++) {
+                    if (!lockedCards[i]) {
+                        hand.replace(i);
+                        Card newCard = hand.getCard(i);
+                        cardButtons.get(i).setText(newCard.toString());
+                    }
+                    lockedCards[i] = false;
+                    unlockCard(i);                    
                 }
-                if (secondLocked == false) {
-                    hand.replace(1);
-                    Card newCard = hand.getCard(1);
-                    secondCardButton.setText(newCard.toString());
-                }
-                if (thirdLocked == false) {
-                    hand.replace(2);
-                    Card newCard = hand.getCard(2);
-                    thirdCardButton.setText(newCard.toString());
-                }
-                if (fourthLocked == false) {
-                    hand.replace(3);
-                    Card newCard = hand.getCard(3);
-                    fourthCardButton.setText(newCard.toString());
-                }
-                if (fifthLocked == false) {
-                    hand.replace(4);
-                    Card newCard = hand.getCard(4);
-                    fifthCardButton.setText(newCard.toString());
-                }
-
-                firstLocked = false;
-                secondLocked = false;
-                thirdLocked = false;
-                fourthLocked = false;
-                fifthLocked = false;
-                firstCardButton.setScaleX(1);
-                firstCardButton.setScaleY(1);
-                secondCardButton.setScaleX(1);
-                secondCardButton.setScaleY(1);
-                thirdCardButton.setScaleX(1);
-                thirdCardButton.setScaleY(1);
-                fourthCardButton.setScaleX(1);
-                fourthCardButton.setScaleY(1);
-                fifthCardButton.setScaleX(1);
-                fifthCardButton.setScaleY(1);
-
+                
                 int latestWin = hand.checkHand() * this.bet;
                 this.winnings += latestWin;
                 winningsLabel.setText("credits: " + this.winnings);
             }
-
+            
         });
-
-        firstCardButton.setOnMouseClicked(firstClicked -> {
-            if (firstLocked == false && firstDealDone) {
-                firstLocked = true;
-                firstCardButton.setScaleX(0.8);
-                firstCardButton.setScaleY(0.8);
-            } else {
-                firstLocked = false;
-                firstCardButton.setScaleX(1);
-                firstCardButton.setScaleY(1);
-            }
-        });
-
-        secondCardButton.setOnMouseClicked(secondClicked -> {
-            if (secondLocked == false && firstDealDone) {
-                secondLocked = true;
-                secondCardButton.setScaleX(0.8);
-                secondCardButton.setScaleY(0.8);
-            } else {
-                secondLocked = false;
-                secondCardButton.setScaleX(1);
-                secondCardButton.setScaleY(1);
-            }
-        });
-
-        thirdCardButton.setOnMouseClicked(thirdClicked -> {
-            if (thirdLocked == false && firstDealDone) {
-                thirdLocked = true;
-                thirdCardButton.setScaleX(0.8);
-                thirdCardButton.setScaleY(0.8);
-            } else {
-                thirdLocked = false;
-                thirdCardButton.setScaleX(1);
-                thirdCardButton.setScaleY(1);
-            }
-        });
-
-        fourthCardButton.setOnMouseClicked(fourthClicked -> {
-            if (fourthLocked == false && firstDealDone) {
-                fourthLocked = true;
-                fourthCardButton.setScaleX(0.8);
-                fourthCardButton.setScaleY(0.8);
-            } else {
-                fourthLocked = false;
-                fourthCardButton.setScaleX(1);
-                fourthCardButton.setScaleY(1);
-            }
-        });
-
-        fifthCardButton.setOnMouseClicked(fifthClicked -> {
-            if (fifthLocked == false && firstDealDone) {
-                fifthLocked = true;
-                fifthCardButton.setScaleX(0.8);
-                fifthCardButton.setScaleY(0.8);
-            } else {
-                fifthLocked = false;
-                fifthCardButton.setScaleX(1);
-                fifthCardButton.setScaleY(1);
-            }
-        });
+        
+        for (int i = 0; i < 5; i++) {
+            int whichButtonWasClicked = i;
+            this.cardButtons.get(i).setOnMouseClicked(klik -> cardClicked(whichButtonWasClicked));
+        }
 
         //final data for the app to start
         primaryStage.setScene(frontPage); //app starts with frontpage scene
         primaryStage.setTitle("Poker application by Henrik Hirvonen");
         primaryStage.show();
     }
-
+    
+    private void cardClicked(int i) {
+        if (lockedCards[i] == false && firstDealDone) {
+            lockCard(i);
+        } else {
+            unlockCard(i);
+        }
+    }
+    
+    private void lockCard(int i) {
+        lockedCards[i] = true;
+        this.cardButtons.get(i).setScaleX(0.8);
+        this.cardButtons.get(i).setScaleY(0.8);
+    }
+    
+    private void unlockCard(int i) {
+        lockedCards[i] = false;
+        this.cardButtons.get(i).setScaleX(1);
+        this.cardButtons.get(i).setScaleY(1);
+    }
+    
 }
