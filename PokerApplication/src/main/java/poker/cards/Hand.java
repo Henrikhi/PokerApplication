@@ -1,5 +1,7 @@
-package pokerPackage;
+package poker.cards;
 
+import poker.cards.DeckOfCards;
+import poker.cards.Card;
 import java.util.ArrayList;
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package pokerPackage;
+package poker.ui;
 
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -13,26 +13,22 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PokerMain extends Application {
-    
+
     private Scene frontPage;
     private Scene game;
     private Scene doubling;
+
     private final int width = 800;
     private final int height = 600;
-    private boolean firstDealDone = false;
-    private int winnings = 20;
-    private int bet = 1;
-    private ArrayList<Button> cardButtons;
-    private boolean[] lockedCards = new boolean[5];
-    
+
+    private poker.logic.gameLogics logic = new poker.logic.gameLogics();
+
     public static void main(String[] args) {
-        System.out.println("hello world!");
         launch(PokerMain.class);
     }
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("The application is running");
         primaryStage.setWidth(width);
         primaryStage.setHeight(height);
 
@@ -53,90 +49,83 @@ public class PokerMain extends Application {
             System.exit(0);
         });
         logIn.setOnMouseClicked(logInClicked -> {
-            //log in does not yet check if account is made or not.
+            //log in does not yet check if account exists or not.
             primaryStage.setScene(game);
         });
 
-        //primary game scene
-        Hand hand = new Hand(); //initialize the hand
-
+        //primary game screen
         BorderPane gameLayout = new BorderPane();
         HBox bottomButtons = new HBox();
         HBox cardButtonsHBox = new HBox();
-        Label winningsLabel = new Label("credits: " + this.winnings);
+
+        Label winningsLabel = new Label("credits: " + logic.winnings / 100);
         winningsLabel.setPadding(new Insets(20));
         gameLayout.setTop(winningsLabel);
 
-        //bottombuttons
+        //bottombuttons of the gaming screen
         Button stop = new Button("stop");
         Button collect = new Button("collect");
-        Button bet = new Button("bet");
+        Button bet = new Button("bet: " + logic.bet / 100);
         Button doubleButton = new Button("double");
         Button play = new Button("play");
 
-        //visual cards
-        this.cardButtons = new ArrayList<>();
+        //card graphics
+        logic.cardButtons = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            this.cardButtons.add(new Button());
+            logic.cardButtons.add(new Button());
         }
-        
-        cardButtons.forEach(card -> {
+
+        logic.cardButtons.forEach(card -> {
             card.setPrefSize(width / 10, height / 5);
             cardButtonsHBox.getChildren().add(card);
         });
         cardButtonsHBox.setSpacing(20);
         cardButtonsHBox.setPadding(new Insets(20));
 
-        //layout
+        //layout of the game screen
         bottomButtons.getChildren().addAll(stop, collect, bet, doubleButton, play);
         bottomButtons.setSpacing(20);
         bottomButtons.setPadding(new Insets(20));
         gameLayout.setBottom(bottomButtons);
         gameLayout.setCenter(cardButtonsHBox);
-        
+
         game = new Scene(gameLayout, width, height);
         stop.setOnMouseClicked(stopClicked -> {
-            //log out the user!
-            primaryStage.setScene(frontPage);
-        });
-        play.setOnMouseClicked(playClicked -> {
-            if (firstDealDone == false) { //fresh game
-                this.winnings -= this.bet;
-                winningsLabel.setText("credits: " + this.winnings);
-                hand.emptyHand();
-                hand.deal5();
-                ArrayList<Card> handData = hand.getHand();
-                for (int i = 0; i < 5; i++) {
-                    Card card = handData.get(i);
-                    cardButtons.get(i).setText(card.toString());
-                }
-                firstDealDone = true;
-                //now the 5 cards are visible and the player can choose
-                //which cards to lock.
-
-            } else {
-                firstDealDone = false;
-                
-                for (int i = 0; i < 5; i++) {
-                    if (!lockedCards[i]) {
-                        hand.replace(i);
-                        Card newCard = hand.getCard(i);
-                        cardButtons.get(i).setText(newCard.toString());
-                    }
-                    lockedCards[i] = false;
-                    unlockCard(i);                    
-                }
-                
-                int latestWin = hand.checkHand() * this.bet;
-                this.winnings += latestWin;
-                winningsLabel.setText("credits: " + this.winnings);
+            if (!logic.firstDealDone) { //can stop playing only if round is not going on
+                //log out the user!
+                primaryStage.setScene(frontPage);
             }
-            
         });
+
+        //PLAY
+        play.setOnMouseClicked(playClicked -> {
+            if (!logic.firstDealDone) { //new round
+                if (logic.winnings >= logic.bet) { //can play if credit >= bet
+                    logic.winnings -= logic.bet;
+                    winningsLabel.setText("credits: " + logic.winnings / 100);
+                    logic.playFresh();
+                }
+            } else { //continue round
+                logic.playContinue();
+                winningsLabel.setText("credits: " + logic.winnings / 100);
+            }
+        });
+
+        //BET
+        bet.setOnMouseClicked(betClicked -> {
+            if (!logic.firstDealDone) { //bet can only be changed if there
+                //is not an existing game round going
+                logic.changeBet();
+                bet.setText("bet: " + logic.bet / 100);
+            }
+
+        });
+
         
+
         for (int i = 0; i < 5; i++) {
             int whichButtonWasClicked = i;
-            this.cardButtons.get(i).setOnMouseClicked(klik -> cardClicked(whichButtonWasClicked));
+            logic.cardButtons.get(i).setOnMouseClicked(klik -> logic.cardClicked(whichButtonWasClicked));
         }
 
         //final data for the app to start
@@ -144,25 +133,5 @@ public class PokerMain extends Application {
         primaryStage.setTitle("Poker application by Henrik Hirvonen");
         primaryStage.show();
     }
-    
-    private void cardClicked(int i) {
-        if (lockedCards[i] == false && firstDealDone) {
-            lockCard(i);
-        } else {
-            unlockCard(i);
-        }
-    }
-    
-    private void lockCard(int i) {
-        lockedCards[i] = true;
-        this.cardButtons.get(i).setScaleX(0.8);
-        this.cardButtons.get(i).setScaleY(0.8);
-    }
-    
-    private void unlockCard(int i) {
-        lockedCards[i] = false;
-        this.cardButtons.get(i).setScaleX(1);
-        this.cardButtons.get(i).setScaleY(1);
-    }
-    
+
 }

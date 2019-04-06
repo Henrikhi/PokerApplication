@@ -1,5 +1,6 @@
-package pokerPackage;
+package poker.cards;
 
+import poker.cards.Card;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,12 +33,23 @@ public class DeckOfCards {
     }
 
     public void addToDeck(Card newCard) {
-        this.deck.add(newCard);
+            this.deck.add(newCard);
+    }
+
+    public int howManyCardsLeft() {
+        return this.deck.size();
     }
 
     public Card dealRandomCard() {
         int cardsLeft = this.deck.size();
-        int chosen = this.random.nextInt(cardsLeft - 1);
+        int chosen;
+        if (cardsLeft == 0) {
+            return null;
+        } else if (cardsLeft == 1) {
+            chosen = 0;
+        } else {
+            chosen = this.random.nextInt(cardsLeft - 1);
+        }
         Card card = deck.get(chosen);
         deck.remove(card);
         return card;
