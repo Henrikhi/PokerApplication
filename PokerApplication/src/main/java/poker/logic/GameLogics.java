@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import poker.cards.Card;
 import poker.cards.Hand;
 
-public class gameLogics {
+public class GameLogics {
 
     public boolean firstDealDone = false;
     public double winnings = 2000;

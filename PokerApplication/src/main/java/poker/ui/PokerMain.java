@@ -21,7 +21,7 @@ public class PokerMain extends Application {
     private final int width = 800;
     private final int height = 600;
 
-    private poker.logic.gameLogics logic = new poker.logic.gameLogics();
+    private poker.logic.GameLogics logic = new poker.logic.GameLogics();
 
     public static void main(String[] args) {
         launch(PokerMain.class);

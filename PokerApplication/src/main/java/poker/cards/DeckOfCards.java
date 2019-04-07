@@ -33,7 +33,7 @@ public class DeckOfCards {
     }
 
     public void addToDeck(Card newCard) {
-            this.deck.add(newCard);
+        this.deck.add(newCard);
     }
 
     public int howManyCardsLeft() {
