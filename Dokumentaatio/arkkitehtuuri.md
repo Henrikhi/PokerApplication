@@ -1,1 +1,1 @@
-<img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/alustavaArkkitehtuuri.png">
+<img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/alustavaArkkitehtuuri2.png">
