@@ -11,6 +11,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import poker.database.User;
+import poker.database.UserDao;
 
 public class PokerMain extends Application {
 
@@ -22,6 +24,8 @@ public class PokerMain extends Application {
     private final int height = 600;
 
     private poker.logic.GameLogics logic = new poker.logic.GameLogics();
+    private UserDao players;
+    private User player;
 
     public static void main(String[] args) {
         launch(PokerMain.class);
