@@ -30,4 +30,8 @@ public class Card {
         return suit;
     }
 
+    public boolean equals(Card another) {
+        return this.value == another.value && this.suit.equals(another.suit);
+    }
+
 }

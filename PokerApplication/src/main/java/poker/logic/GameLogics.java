@@ -7,12 +7,22 @@ import poker.cards.Hand;
 
 public class GameLogics {
 
-    public boolean firstDealDone = false;
-    public double winnings = 2000;
-    public double bet = 20;
-    public boolean[] lockedCards = new boolean[5];
+    public boolean firstDealDone;
+    public double winnings;
+    public double bet;
+    public boolean[] lockedCards;
     public ArrayList<Button> cardButtons;
-    Hand hand = new Hand();
+    Hand hand;
+
+    public GameLogics() {
+        this.firstDealDone = false;
+        this.winnings = 2000;
+        this.bet = 20;
+        this.lockedCards = new boolean[5];
+        this.cardButtons = new ArrayList<>();
+        this.hand = new Hand();
+
+    }
 
     public void playFresh() {
         hand.emptyHand();

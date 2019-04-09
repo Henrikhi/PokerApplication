@@ -20,6 +20,16 @@ public class Hand {
         this.deck = new DeckOfCards();
     }
 
+    public Hand(Card first, Card second, Card third, Card fourth, Card fifth) {
+        this.hand = new ArrayList<>();
+        this.hand.add(first);
+        this.hand.add(second);
+        this.hand.add(third);
+        this.hand.add(fourth);
+        this.hand.add(fifth);
+        this.deck = new DeckOfCards();
+    }
+
     public ArrayList<Card> getHand() {
         return hand;
     }
@@ -39,8 +49,8 @@ public class Hand {
 
     public void replace(int cardNumber) {
         Card oldCard = this.hand.get(cardNumber);
-        this.hand.remove(cardNumber);
         Card newCard = this.deck.dealRandomCard();
+        this.hand.remove(cardNumber);
         this.deck.addToDeck(oldCard);
         this.hand.add(cardNumber, newCard);
     }
@@ -48,7 +58,6 @@ public class Hand {
     public Card getCard(int cardNumber) {
         return this.hand.get(cardNumber);
     }
-
 
     public int checkHand() { //return the value of the hand. Returns an integer
         //winnings for the round = bet * returned integer.

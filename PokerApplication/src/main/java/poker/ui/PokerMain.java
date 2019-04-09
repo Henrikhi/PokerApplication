@@ -13,20 +13,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PokerMain extends Application {
-
+    
     private Scene frontPage;
     private Scene game;
     private Scene doubling;
-
+    
     private final int width = 800;
     private final int height = 600;
-
+    
     private poker.logic.GameLogics logic = new poker.logic.GameLogics();
 
     public static void main(String[] args) {
         launch(PokerMain.class);
     }
-
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setWidth(width);
@@ -57,7 +57,7 @@ public class PokerMain extends Application {
         BorderPane gameLayout = new BorderPane();
         HBox bottomButtons = new HBox();
         HBox cardButtonsHBox = new HBox();
-
+        
         Label winningsLabel = new Label("credits: " + logic.winnings / 100);
         winningsLabel.setPadding(new Insets(20));
         gameLayout.setTop(winningsLabel);
@@ -70,11 +70,10 @@ public class PokerMain extends Application {
         Button play = new Button("play");
 
         //card graphics
-        logic.cardButtons = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             logic.cardButtons.add(new Button());
         }
-
+        
         logic.cardButtons.forEach(card -> {
             card.setPrefSize(width / 10, height / 5);
             cardButtonsHBox.getChildren().add(card);
@@ -88,7 +87,7 @@ public class PokerMain extends Application {
         bottomButtons.setPadding(new Insets(20));
         gameLayout.setBottom(bottomButtons);
         gameLayout.setCenter(cardButtonsHBox);
-
+        
         game = new Scene(gameLayout, width, height);
         stop.setOnMouseClicked(stopClicked -> {
             if (!logic.firstDealDone) { //can stop playing only if round is not going on
@@ -118,11 +117,9 @@ public class PokerMain extends Application {
                 logic.changeBet();
                 bet.setText("bet: " + logic.bet / 100);
             }
-
+            
         });
-
         
-
         for (int i = 0; i < 5; i++) {
             int whichButtonWasClicked = i;
             logic.cardButtons.get(i).setOnMouseClicked(klik -> logic.cardClicked(whichButtonWasClicked));
@@ -133,5 +130,5 @@ public class PokerMain extends Application {
         primaryStage.setTitle("Poker application by Henrik Hirvonen");
         primaryStage.show();
     }
-
+    
 }
