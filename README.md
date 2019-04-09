@@ -1,6 +1,6 @@
 # Pelikonepokeri-sovellus
 
-Sovelluksen avulla pelaaja voi pelata pelikonepokeria omalta tietokoneeltaan, vailla oikean rahan häviämisen pelkoa. Pelajaan tulee tehdä uusi käyttäjä, tai kirjautua jo tehdyllä käyttäjällä.
+Sovelluksen avulla pelaaja voi pelata pelikonepokeria omalta tietokoneeltaan, vailla oikean rahan häviämisen pelkoa. Pelajan tulee tehdä uusi käyttäjä, tai kirjautua jo tehdyllä käyttäjällä.
 
 ## Dokumentaatio
 
