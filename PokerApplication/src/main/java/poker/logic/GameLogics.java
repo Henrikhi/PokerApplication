@@ -18,7 +18,7 @@ public class GameLogics {
 
     public GameLogics() {
         this.firstDealDone = false;
-        this.winnings = 2000;
+        this.winnings = 000;
         this.bet = 20;
         this.lockedCards = new boolean[5];
         cardButtons = new Button[5];
@@ -96,5 +96,9 @@ public class GameLogics {
         } else {
             return Color.RED;
         }
+    }
+
+    public void insertCoinClicked() {
+        this.winnings += 200;
     }
 }

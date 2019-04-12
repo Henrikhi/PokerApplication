@@ -95,5 +95,12 @@ public class GameLogicsTest {
         Card card = new Card(5, "D");
         assertEquals(logic.setColor(card), Color.RED);
     }
+    
+    @Test
+    public void insertCoinWorks() {
+        double winningsFirst = logic.winnings;
+        logic.insertCoinClicked();
+        assertTrue(logic.winnings-winningsFirst == 200);
+    }
 
 }
