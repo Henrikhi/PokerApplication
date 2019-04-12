@@ -16,6 +16,7 @@ public class GameLogics {
     public Button[] cardButtons;
     Hand hand;
     public double latestWin;
+    public Card doublingCard;
 
     public GameLogics() {
         this.firstDealDone = false;
@@ -25,6 +26,7 @@ public class GameLogics {
         cardButtons = new Button[5];
         this.hand = new Hand();
         this.latestWin = 0;
+        this.doublingCard = new Card();
     }
 
     public void playFresh() {
@@ -114,7 +116,47 @@ public class GameLogics {
         this.latestWin = 0;
     }
 
-    public void doubleSuccesful() {
-        this.latestWin *= 2;
+    public void newDoublingCard() {
+        Card old = this.doublingCard;
+        Card newCard = new Card();
+        while (old.equals(newCard)) {   //I want that the next card is not
+            newCard = new Card();       //same as the previous card, because
+        }                               //this makes tests so much easier
+        this.doublingCard = newCard;
     }
+
+    public int highClicked() {
+        Card card = this.doublingCard;
+        if (card.isBlackSeven()) {
+            this.latestWin = 0;
+            return 0;
+        }
+        if (card.isRedSeven()) {
+            return 1;
+        }
+        if (card.isHighCard()) {
+            this.latestWin *= 2;
+            return 2;
+        }
+        this.latestWin = 0;
+        return 0;
+    }
+
+    public int lowClicked() {
+        Card card = this.doublingCard;
+        if (card.isBlackSeven()) {
+            this.latestWin = 0;
+            return 0;
+        }
+        if (card.isRedSeven()) {
+            return 1;
+        }
+        if (card.isLowCard()) {
+            this.latestWin *= 2;
+            return 2;
+        }
+        this.latestWin = 0;
+        return 0;
+    }
+
 }

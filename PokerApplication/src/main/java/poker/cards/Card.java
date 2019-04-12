@@ -1,9 +1,12 @@
 package poker.cards;
 
+import java.util.Random;
+
 public class Card {
 
     private int value;
     private String suit;
+    private Random random = new Random();
 
     public Card(int value, String suit) {
         if ((value >= 1 && value <= 13)
@@ -15,6 +18,14 @@ public class Card {
             this.value = 0;
             this.suit = "null";
         }
+    }
+
+    public Card() {
+        this.value = 1 + random.nextInt(13);
+        String randomsuits = "HSCD";
+        int number = random.nextInt(4);
+        String chosenSuit = randomsuits.substring(number, number + 1);
+        this.suit = chosenSuit;
     }
 
     @Override
@@ -43,7 +54,7 @@ public class Card {
             return "" + this.value;
         }
     }
-    
+
     public Character getSuitString() {
         if (this.suit.equals("C")) {
             return '\u2663';
@@ -60,4 +71,29 @@ public class Card {
         return this.value == another.value && this.suit.equals(another.suit);
     }
 
+    public boolean isBlackSeven() {
+        if (this.value == 7) {
+            if (this.suit.equals("S") || this.suit.equals("C")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isRedSeven() {
+        if (this.value == 7) {
+            if (this.suit.equals("H") || this.suit.equals("D")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isHighCard() {
+        return this.value > 7;
+    }
+
+    public boolean isLowCard() {
+        return this.value < 7;
+    }
 }

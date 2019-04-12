@@ -80,27 +80,27 @@ public class Hand {
         this.fifth = this.hand.get(4);
 
         if (straightFlush()) {
-            return 8;
+            return 25;
         }
 
         if (fourOfAKind()) {
-            return 7;
+            return 12;
         }
 
         if (fullHouse()) {
-            return 6;
+            return 7;
         }
 
         if (flush()) {
-            return 5;
-        }
-
-        if (straight()) {
             return 4;
         }
 
-        if (threeOfAKind()) {
+        if (straight()) {
             return 3;
+        }
+
+        if (threeOfAKind()) {
+            return 2;
         }
 
         if (twoPairs()) {

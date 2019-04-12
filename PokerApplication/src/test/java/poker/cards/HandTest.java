@@ -85,7 +85,7 @@ public class HandTest {
         Card card4 = new Card(1, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 8); //the value for straightFlush was 8
+        assertEquals(hand.checkHand(), 25); //the value for straightFlush was 25
     }
 
     @Test
@@ -97,7 +97,7 @@ public class HandTest {
         Card card4 = new Card(1, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 8); //the value for straightFlush was 8
+        assertEquals(hand.checkHand(), 25); //the value for straightFlush was 25
     }
 
     @Test
@@ -109,7 +109,7 @@ public class HandTest {
         Card card4 = new Card(1, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertNotEquals(hand.checkHand(), 8); //the value for straightFlush was 8
+        assertNotEquals(hand.checkHand(), 25); //the value for straightFlush was 25
     }
 
     @Test
@@ -121,7 +121,7 @@ public class HandTest {
         Card card4 = new Card(1, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 7);
+        assertEquals(hand.checkHand(), 12);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class HandTest {
         Card card4 = new Card(1, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 6);
+        assertEquals(hand.checkHand(), 7);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class HandTest {
         Card card4 = new Card(8, "H");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 5);
+        assertEquals(hand.checkHand(), 4);
     }
 
     @Test
@@ -157,7 +157,7 @@ public class HandTest {
         Card card4 = new Card(9, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 4);
+        assertEquals(hand.checkHand(), 3);
     }
 
     @Test
@@ -169,7 +169,7 @@ public class HandTest {
         Card card4 = new Card(2, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertNotEquals(hand.checkHand(), 4);
+        assertNotEquals(hand.checkHand(), 3);
     }
 
     @Test
@@ -181,7 +181,7 @@ public class HandTest {
         Card card4 = new Card(1, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 4);
+        assertEquals(hand.checkHand(), 3);
     }
 
     @Test
@@ -193,7 +193,7 @@ public class HandTest {
         Card card4 = new Card(1, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 4);
+        assertEquals(hand.checkHand(), 3);
     }
 
     @Test
@@ -205,7 +205,7 @@ public class HandTest {
         Card card4 = new Card(9, "S");
 
         Hand hand = new Hand(card0, card1, card2, card3, card4);
-        assertEquals(hand.checkHand(), 3);
+        assertEquals(hand.checkHand(), 2);
     }
 
     @Test

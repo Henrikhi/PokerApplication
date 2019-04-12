@@ -20,13 +20,13 @@ public class PokerMain extends Application {
 
     private Scene frontPage;
     private Scene game;
-    private Scene doubling;
 
     private final int width = 800;
     private final int height = 600;
 
     private poker.logic.GameLogics logic = new poker.logic.GameLogics();
     private boolean doubleOrCollect = false;
+    private boolean doubleClicked = false;
 
     public static void main(String[] args) {
         launch(PokerMain.class);
@@ -143,10 +143,15 @@ public class PokerMain extends Application {
         play.setOnMouseClicked(playClicked -> {
             if (!this.doubleOrCollect) {
                 if (!logic.firstDealDone) { //new round
+                    gameLayout.setCenter(centerLayout);
+                    roundEndText.setText("\n Good luck! \n");
                     if (logic.winnings >= logic.bet) { //can play if credit >= bet
                         logic.newRound();
                         winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
                         logic.playFresh();
+                    } else {
+                        roundEndText.setText("You do not have enough credits to continue. \n"
+                                + "Please lower your bet or insert more coins. \n");
                     }
                 } else { //continue round
                     double latestWin = logic.playContinue();
@@ -154,6 +159,8 @@ public class PokerMain extends Application {
                         this.doubleOrCollect = true;
                         roundEndText.setText("Congratulations! You have won " + logic.latestWin / 100 + "€!\n"
                                 + "Please collect your winnings or try your luck in doubling them!\n");
+                    } else {
+                        roundEndText.setText("\nBetter luck next time!\n");
                     }
                 }
             }
@@ -182,28 +189,98 @@ public class PokerMain extends Application {
         });
 
         //DOUBLING SCENARIO 
-        BorderPane doublinLayout = new BorderPane();
+        VBox doublingLayout = new VBox();
+        Text doublingText = new Text();
+        doublingText.setFont(new Font(20));
+        HBox doublingCardAndButtons = new HBox();
+        VBox doublingButtons = new VBox();
+        Button buttonHigh = new Button("High");
+        Button buttonLow = new Button("Low");
+        buttonHigh.setPrefSize(90, 70);
+        buttonHigh.setShape(buttonShape);
+        buttonHigh.setFont(new Font("Arial Bold", 15));
+        buttonLow.setPrefSize(90, 70);
+        buttonLow.setShape(buttonShape);
+        buttonLow.setFont(new Font("Arial Bold", 15));
+        Button doublingCard = new Button();
+        doublingCard.setPrefSize(width / 7, height / 3);
+        doublingCard.setFont(new Font("Arial", 32));
+        doublingButtons.getChildren().addAll(buttonHigh, buttonLow);
+        doublingCardAndButtons.getChildren().addAll(doublingCard, doublingButtons);
+        doublingLayout.getChildren().addAll(doublingText, doublingCardAndButtons);
+        doublingButtons.setSpacing(20);
+        doublingButtons.setPadding(defaultInsets);
+        doublingCardAndButtons.setAlignment(Pos.CENTER);
+        doublingCardAndButtons.setSpacing(20);
+        doublingCardAndButtons.setPadding(defaultInsets);
+        doublingLayout.setAlignment(Pos.CENTER);
+        doublingLayout.setPadding(defaultInsets);
+        doublingLayout.setSpacing(20);
 
-        //Player has won some money in the round and has to double or collect
         //DOUBLE
         doubleButton.setOnMouseClicked(doubleClicked -> {
             if (this.doubleOrCollect) {
-                this.doubleOrCollect = false;
-                logic.doubleSuccesful();
-                logic.addWinnings();
-                winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+                doublingCard.setText("");
+                doublingText.setText("You are trying to double " + logic.latestWin / 100 + "€.\n"
+                        + "Choose either \"high\" or \"low\".");
+                gameLayout.setCenter(doublingLayout);
+                this.doubleClicked = true;
+            }
+        });
+
+        buttonHigh.setOnMouseClicked(highClicked -> {
+            if (doubleClicked) {
+                logic.newDoublingCard();
+                double win = logic.highClicked();
+                doublingCard.setText(logic.doublingCard.toString());
+                doublingCard.setTextFill(logic.setColor(logic.doublingCard));
+                if (win == 0) {
+                    doublingText.setText("Too bad. Better luck next time! \n");
+                    this.doubleClicked = false;
+                    this.doubleOrCollect = false;
+                } else if (win == 1) {
+                    doubleClicked = false;
+                    doublingText.setText("Red 7! You get to keep your winnings. \n"
+                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
+                } else if (win == 2) {
+                    doubleClicked = false;
+                    doublingText.setText("Congratulations! Doubling succesfull. \n"
+                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
+                }
+            }
+        });
+
+        buttonLow.setOnMouseClicked(lowClicked -> {
+            if (doubleClicked) {
+                logic.newDoublingCard();
+                double win = logic.lowClicked();
+                doublingCard.setText(logic.doublingCard.toString());
+                doublingCard.setTextFill(logic.setColor(logic.doublingCard));
+                if (win == 0) {
+                    doublingText.setText("Too bad. Better luck next time! \n");
+                    this.doubleClicked = false;
+                    this.doubleOrCollect = false;
+                } else if (win == 1) {
+                    doubleClicked = false;
+                    doublingText.setText("Red 7! You get to keep your winnings. \n"
+                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
+                } else if (win == 2) {
+                    doubleClicked = false;
+                    doublingText.setText("Congratulations! Doubling succesfull. \n"
+                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
+                }
             }
         });
 
         //COLLECT
         collect.setOnMouseClicked(collectClicked -> {
-            if (this.doubleOrCollect) {
+            if (this.doubleOrCollect && !this.doubleClicked) {
                 this.doubleOrCollect = false;
+                roundEndText.setText("\nYou collected " + logic.latestWin/100 + "€.\n");
+                doublingText.setText("You collected " + logic.latestWin/100 + "€. \n");
                 logic.addWinnings();
                 winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
-                roundEndText.setText("\n\n");
             }
-
         });
 
         //final data for the app to start
