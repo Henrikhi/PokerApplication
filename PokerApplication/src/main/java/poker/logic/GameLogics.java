@@ -15,6 +15,7 @@ public class GameLogics {
     public boolean[] lockedCards;
     public Button[] cardButtons;
     Hand hand;
+    public double latestWin;
 
     public GameLogics() {
         this.firstDealDone = false;
@@ -23,7 +24,7 @@ public class GameLogics {
         this.lockedCards = new boolean[5];
         cardButtons = new Button[5];
         this.hand = new Hand();
-
+        this.latestWin = 0;
     }
 
     public void playFresh() {
@@ -41,19 +42,21 @@ public class GameLogics {
 
     }
 
-    public void playContinue() {
+    public double playContinue() {
         firstDealDone = false;
         for (int i = 0; i < 5; i++) {
             if (!lockedCards[i]) {
                 hand.replace(i);
                 Card newCard = hand.getCard(i);
                 cardButtons[i].setText(newCard.toString());
+                cardButtons[i].setTextFill(setColor(newCard));
             }
             lockedCards[i] = false;
             unlockCard(i);
         }
-        double latestWin = hand.checkHand() * this.bet;
-        this.winnings += latestWin;
+
+        this.latestWin = hand.checkHand() * this.bet;
+        return latestWin;
     }
 
     public void cardClicked(int i) {
@@ -100,5 +103,18 @@ public class GameLogics {
 
     public void insertCoinClicked() {
         this.winnings += 200;
+    }
+
+    public void newRound() {
+        this.winnings -= this.bet;
+    }
+
+    public void addWinnings() {
+        this.winnings += this.latestWin;
+        this.latestWin = 0;
+    }
+
+    public void doubleSuccesful() {
+        this.latestWin *= 2;
     }
 }

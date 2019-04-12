@@ -38,6 +38,9 @@ public class Hand {
         for (int i = 0; i < 5; i++) {
             this.hand.add(this.deck.dealRandomCard());
         }
+        if (this.hand.size() != 5) {
+            System.out.println("something is wrong with the size of the hand!");
+        }
     }
 
     public void emptyHand() {
@@ -48,15 +51,24 @@ public class Hand {
     }
 
     public void replace(int cardNumber) {
-        Card oldCard = this.hand.get(cardNumber);
-        Card newCard = this.deck.dealRandomCard();
-        this.hand.remove(cardNumber);
-        this.deck.addToDeck(oldCard);
-        this.hand.add(cardNumber, newCard);
+        if (cardNumber >= 0 && cardNumber < 5) {
+            Card oldCard = this.hand.get(cardNumber);
+            Card newCard = this.deck.dealRandomCard();
+            this.hand.remove(cardNumber);
+            this.deck.addToDeck(oldCard);
+            this.hand.add(cardNumber, newCard);
+        } else {
+            System.out.println("Card index out of bounds 1");
+        }
     }
 
     public Card getCard(int cardNumber) {
-        return this.hand.get(cardNumber);
+        if (cardNumber >= 0 && cardNumber < 5) {
+            return this.hand.get(cardNumber);
+        } else {
+            System.out.println("Card index out of bounds 2");
+            return null;
+        }
     }
 
     public int checkHand() { //return the value of the hand. Returns an integer

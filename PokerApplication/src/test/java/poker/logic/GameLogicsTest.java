@@ -1,7 +1,5 @@
 package poker.logic;
 
-import java.util.ArrayList;
-import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -89,18 +87,50 @@ public class GameLogicsTest {
         Card card = new Card(13, "H");
         assertEquals(logic.setColor(card), Color.RED);
     }
-    
+
     @Test
     public void setColorRed2() {
         Card card = new Card(5, "D");
         assertEquals(logic.setColor(card), Color.RED);
     }
-    
+
     @Test
     public void insertCoinWorks() {
         double winningsFirst = logic.winnings;
         logic.insertCoinClicked();
-        assertTrue(logic.winnings-winningsFirst == 200);
+        assertTrue(logic.winnings - winningsFirst == 200);
+    }
+
+    @Test
+    public void addWinningsAddsWinnings() {
+        logic.winnings = 100;
+        logic.latestWin = 100;
+        logic.addWinnings();
+        assertTrue(logic.winnings == 200);
+    }
+
+    @Test
+    public void addWinningsResetsLatestwin() {
+        logic.winnings = 100;
+        logic.latestWin = 100;
+        logic.addWinnings();
+        assertTrue(logic.latestWin == 0);
+    }
+
+    @Test
+    public void newRoundWorks() {
+        logic.winnings = 100;
+        logic.bet = 100;
+        logic.newRound();
+        assertTrue(logic.winnings == 0);
+    }
+
+    @Test
+    public void newRoundWorks2() {
+        logic.winnings = 160;
+        logic.bet = 40;
+        logic.newRound();
+        assertTrue(logic.winnings == 120);
     }
 
 }

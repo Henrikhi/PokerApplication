@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class PokerMain extends Application {
@@ -25,6 +26,7 @@ public class PokerMain extends Application {
     private final int height = 600;
 
     private poker.logic.GameLogics logic = new poker.logic.GameLogics();
+    private boolean doubleOrCollect = false;
 
     public static void main(String[] args) {
         launch(PokerMain.class);
@@ -69,10 +71,11 @@ public class PokerMain extends Application {
         BorderPane gameLayout = new BorderPane();
         HBox bottomButtons = new HBox();
         HBox cardButtonsHBox = new HBox();
-        cardButtonsHBox.setAlignment(Pos.CENTER);
+        VBox centerLayout = new VBox();
         BorderPane bottomLayout = new BorderPane();
 
-        Label winningsLabel = new Label("credits: " + logic.winnings / 100);
+        Label winningsLabel = new Label("credits: " + logic.winnings / 100 + "€");
+        winningsLabel.setFont(new Font(20));
         Insets defaultInsets = new Insets(20);
         winningsLabel.setPadding(defaultInsets);
         gameLayout.setTop(winningsLabel);
@@ -81,7 +84,7 @@ public class PokerMain extends Application {
         Circle buttonShape = new Circle(20);
         Button stop = new Button("stop");
         Button collect = new Button("collect");
-        Button bet = new Button("bet: " + logic.bet / 100);
+        Button bet = new Button("bet: " + logic.bet / 100 + "€");
         Button doubleButton = new Button("double");
         Button play = new Button("play");
         Button insertCoin = new Button("Insert 2€");
@@ -111,6 +114,9 @@ public class PokerMain extends Application {
 
         cardButtonsHBox.setSpacing(20);
 
+        Text roundEndText = new Text("\n\n");
+        roundEndText.setFont(new Font(20));
+
         //layout of the game screen
         bottomButtons.getChildren().addAll(stop, bet, collect, doubleButton, play);
         bottomButtons.setSpacing(30);
@@ -118,36 +124,47 @@ public class PokerMain extends Application {
         bottomLayout.setRight(insertCoin);
         bottomLayout.setPadding(defaultInsets);
         gameLayout.setBottom(bottomLayout);
-        gameLayout.setCenter(cardButtonsHBox);
+        cardButtonsHBox.setAlignment(Pos.CENTER);
+        centerLayout.getChildren().addAll(roundEndText, cardButtonsHBox);
+        centerLayout.setAlignment(Pos.CENTER);
+        centerLayout.setPadding(defaultInsets);
+        gameLayout.setCenter(centerLayout);
 
         game = new Scene(gameLayout, width, height);
         stop.setOnMouseClicked(stopClicked -> {
-            if (!logic.firstDealDone) { //can stop playing only if round is not going on
-                //log out the user!
+            if (!logic.firstDealDone && !this.doubleOrCollect) { //can stop playing only if round is not going on
+                //and if player is not in "double or collect"-situation
+                //remember to log out the user!
                 primaryStage.setScene(frontPage);
             }
         });
 
         //PLAY
         play.setOnMouseClicked(playClicked -> {
-            if (!logic.firstDealDone) { //new round
-                if (logic.winnings >= logic.bet) { //can play if credit >= bet
-                    logic.winnings -= logic.bet;
-                    winningsLabel.setText("credits: " + logic.winnings / 100);
-                    logic.playFresh();
+            if (!this.doubleOrCollect) {
+                if (!logic.firstDealDone) { //new round
+                    if (logic.winnings >= logic.bet) { //can play if credit >= bet
+                        logic.newRound();
+                        winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+                        logic.playFresh();
+                    }
+                } else { //continue round
+                    double latestWin = logic.playContinue();
+                    if (latestWin != 0) {
+                        this.doubleOrCollect = true;
+                        roundEndText.setText("Congratulations! You have won " + logic.latestWin / 100 + "€!\n"
+                                + "Please collect your winnings or try your luck in doubling them!\n");
+                    }
                 }
-            } else { //continue round
-                logic.playContinue();
-                winningsLabel.setText("credits: " + logic.winnings / 100);
             }
         });
 
         //BET
         bet.setOnMouseClicked(betClicked -> {
-            if (!logic.firstDealDone) { //bet can only be changed if there
+            if (!logic.firstDealDone && !this.doubleOrCollect) { //bet can only be changed if there
                 //is not an existing game round going
                 logic.changeBet();
-                bet.setText("bet: " + logic.bet / 100);
+                bet.setText("bet: " + logic.bet / 100 + "€");
             }
 
         });
@@ -161,7 +178,32 @@ public class PokerMain extends Application {
         //INSERT COIN
         insertCoin.setOnMouseClicked(insertCoinClicked -> {
             logic.insertCoinClicked();
-            winningsLabel.setText("credits: " + logic.winnings / 100);
+            winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+        });
+
+        //DOUBLING SCENARIO 
+        BorderPane doublinLayout = new BorderPane();
+
+        //Player has won some money in the round and has to double or collect
+        //DOUBLE
+        doubleButton.setOnMouseClicked(doubleClicked -> {
+            if (this.doubleOrCollect) {
+                this.doubleOrCollect = false;
+                logic.doubleSuccesful();
+                logic.addWinnings();
+                winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+            }
+        });
+
+        //COLLECT
+        collect.setOnMouseClicked(collectClicked -> {
+            if (this.doubleOrCollect) {
+                this.doubleOrCollect = false;
+                logic.addWinnings();
+                winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+                roundEndText.setText("\n\n");
+            }
+
         });
 
         //final data for the app to start
