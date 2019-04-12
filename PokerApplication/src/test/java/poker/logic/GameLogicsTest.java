@@ -2,9 +2,11 @@ package poker.logic;
 
 import java.util.ArrayList;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import poker.cards.Card;
 
 public class GameLogicsTest {
 
@@ -68,6 +70,30 @@ public class GameLogicsTest {
     @Test
     public void firstDealDoneIsFalseInTheBeginning() {
         assertFalse(logic.firstDealDone);
+    }
+
+    @Test
+    public void setColorBlack1() {
+        Card card = new Card(1, "S");
+        assertEquals(logic.setColor(card), Color.BLACK);
+    }
+
+    @Test
+    public void setColorBlack2() {
+        Card card = new Card(11, "C");
+        assertEquals(logic.setColor(card), Color.BLACK);
+    }
+
+    @Test
+    public void setColorRed1() {
+        Card card = new Card(13, "H");
+        assertEquals(logic.setColor(card), Color.RED);
+    }
+    
+    @Test
+    public void setColorRed2() {
+        Card card = new Card(5, "D");
+        assertEquals(logic.setColor(card), Color.RED);
     }
 
 }

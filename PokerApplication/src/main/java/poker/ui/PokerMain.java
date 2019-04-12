@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -70,15 +71,15 @@ public class PokerMain extends Application {
         Button play = new Button("play");
 
         //card graphics
-        for (int i = 0; i < 5; i++) {
-            logic.cardButtons.add(new Button());
-        }
         
-        logic.cardButtons.forEach(card -> {
+        for (int i = 0; i < 5; i++) {
+            logic.cardButtons[i] = new Button();
+            Button card = logic.cardButtons[i];
             card.setPrefSize(width / 10, height / 5);
             cardButtonsHBox.getChildren().add(card);
             card.setFont(new Font("Arial", 24));
-        });
+        }
+        
         cardButtonsHBox.setSpacing(20);
         cardButtonsHBox.setPadding(new Insets(20));
 
@@ -123,7 +124,7 @@ public class PokerMain extends Application {
         
         for (int i = 0; i < 5; i++) {
             int whichButtonWasClicked = i;
-            logic.cardButtons.get(i).setOnMouseClicked(klik -> logic.cardClicked(whichButtonWasClicked));
+            logic.cardButtons[i].setOnMouseClicked(klik -> logic.cardClicked(whichButtonWasClicked));
         }
 
         //final data for the app to start

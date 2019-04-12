@@ -2,6 +2,8 @@ package poker.logic;
 
 import java.util.ArrayList;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import poker.cards.Card;
 import poker.cards.Hand;
 
@@ -11,7 +13,7 @@ public class GameLogics {
     public double winnings;
     public double bet;
     public boolean[] lockedCards;
-    public ArrayList<Button> cardButtons;
+    public Button[] cardButtons;
     Hand hand;
 
     public GameLogics() {
@@ -19,7 +21,7 @@ public class GameLogics {
         this.winnings = 2000;
         this.bet = 20;
         this.lockedCards = new boolean[5];
-        this.cardButtons = new ArrayList<>();
+        cardButtons = new Button[5];
         this.hand = new Hand();
 
     }
@@ -30,7 +32,8 @@ public class GameLogics {
         ArrayList<Card> handData = hand.getHand();
         for (int i = 0; i < 5; i++) {
             Card card = handData.get(i);
-            cardButtons.get(i).setText(card.toString());
+            cardButtons[i].setText(card.toString());
+            cardButtons[i].setTextFill(setColor(card));
         }
         firstDealDone = true;
         //now the 5 cards are visible and the player can choose
@@ -44,7 +47,7 @@ public class GameLogics {
             if (!lockedCards[i]) {
                 hand.replace(i);
                 Card newCard = hand.getCard(i);
-                cardButtons.get(i).setText(newCard.toString());
+                cardButtons[i].setText(newCard.toString());
             }
             lockedCards[i] = false;
             unlockCard(i);
@@ -63,14 +66,14 @@ public class GameLogics {
 
     public void lockCard(int i) {
         lockedCards[i] = true;
-        this.cardButtons.get(i).setScaleX(0.8);
-        this.cardButtons.get(i).setScaleY(0.8);
+        this.cardButtons[i].setScaleX(0.8);
+        this.cardButtons[i].setScaleY(0.8);
     }
 
     public void unlockCard(int i) {
         lockedCards[i] = false;
-        this.cardButtons.get(i).setScaleX(1);
-        this.cardButtons.get(i).setScaleY(1);
+        this.cardButtons[i].setScaleX(1);
+        this.cardButtons[i].setScaleY(1);
     }
 
     public void changeBet() {
@@ -84,6 +87,14 @@ public class GameLogics {
             bet = 100;
         } else {
             bet = 20;
+        }
+    }
+
+    public Paint setColor(Card card) {
+        if (card.getSuit().equals("S") || card.getSuit().equals("C")) {
+            return Color.BLACK;
+        } else {
+            return Color.RED;
         }
     }
 }
