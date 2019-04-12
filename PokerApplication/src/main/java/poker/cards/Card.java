@@ -19,7 +19,7 @@ public class Card {
 
     @Override
     public String toString() {
-        return value + " " + suit;
+        return getValueString() + " " + getSuitString();
     }
 
     public int getValue() {
@@ -28,6 +28,32 @@ public class Card {
 
     public String getSuit() {
         return suit;
+    }
+
+    public String getValueString() {
+        if (this.value == 1) {
+            return "A";
+        } else if (this.value == 11) {
+            return "J";
+        } else if (this.value == 12) {
+            return "Q";
+        } else if (this.value == 13) {
+            return "K";
+        } else {
+            return "" + this.value;
+        }
+    }
+    
+    public Character getSuitString() {
+        if (this.suit.equals("C")) {
+            return '\u2663';
+        } else if (this.suit.equals("S")) {
+            return '\u2660';
+        } else if (this.suit.equals("H")) {
+            return '\u2665';
+        } else {
+            return '\u2666';
+        }
     }
 
     public boolean equals(Card another) {
