@@ -9,3 +9,45 @@ Sovelluksen avulla pelaaja voi pelata pelikonepokeria omalta tietokoneeltaan, va
 [Työaikakirjanpito](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/tuntikirjanpito.md)
 
 [Arkkitehtuuri](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/arkkitehtuuri.md)
+
+## Releaset
+
+[Viikko 5](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/viikko5)
+
+## Komentorivitoiminnot
+
+### Testaus
+
+Testit suoritetaan komennolla
+
+```
+mvn test
+```
+
+Testikattavuusraportti luodaan komennolla
+
+```
+mvn jacoco:report
+```
+
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
+
+### Suoritettavan jarin generointi
+
+Komento
+
+```
+mvn package
+```
+
+generoi hakemistoon _target_ suoritettavan jar-tiedoston _PokerApplication-1.0-SNAPSHOT.jar_
+
+### Checkstyle
+
+Tiedostoon [checkstyle.xml](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/PokerApplication/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
+
+```
+ mvn jxr:jxr checkstyle:checkstyle
+```
+
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
