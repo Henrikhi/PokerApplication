@@ -29,7 +29,7 @@ public class GameLogics {
         this.doublingCard = new Card();
     }
 
-    public void playFresh() {
+    public void playNewRound() {
         hand.emptyHand();
         hand.deal5();
         ArrayList<Card> handData = hand.getHand();
@@ -44,7 +44,7 @@ public class GameLogics {
 
     }
 
-    public double playContinue() {
+    public double playContinueRound() {
         firstDealDone = false;
         for (int i = 0; i < 5; i++) {
             if (!lockedCards[i]) {
