@@ -10,4 +10,5 @@
 | 8.4   | 1   | tietokannan tekemisen aloittaminen. | 
 | 9.4   | 4   | tietokannan kanssa nyhvääminen ja tältä viikolta perääntyminen, testien lisääminen |
 | 12.4   | 6   | käyttöliittymä hiottu timanttiin, testejä lisätty, tuplaus onnistuu. Tietokantoja lukuunottamatta täysin toimiva sovellus. |
-| yht   | 21   | | 
+| 16.4   | 2   | arkkitehtuuri-tiedostoon sekvenssikaavion tekeminen, sovelluksen koodin pieni viilaaminen. |
+| yht   | 23   | | 
