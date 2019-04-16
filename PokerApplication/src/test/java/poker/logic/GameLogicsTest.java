@@ -73,25 +73,25 @@ public class GameLogicsTest {
     @Test
     public void setColorBlack1() {
         Card card = new Card(1, "S");
-        assertEquals(logic.setColor(card), Color.BLACK);
+        assertEquals(logic.getColor(card), Color.BLACK);
     }
 
     @Test
     public void setColorBlack2() {
         Card card = new Card(11, "C");
-        assertEquals(logic.setColor(card), Color.BLACK);
+        assertEquals(logic.getColor(card), Color.BLACK);
     }
 
     @Test
     public void setColorRed1() {
         Card card = new Card(13, "H");
-        assertEquals(logic.setColor(card), Color.RED);
+        assertEquals(logic.getColor(card), Color.RED);
     }
 
     @Test
     public void setColorRed2() {
         Card card = new Card(5, "D");
-        assertEquals(logic.setColor(card), Color.RED);
+        assertEquals(logic.getColor(card), Color.RED);
     }
 
     @Test

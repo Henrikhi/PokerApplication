@@ -36,7 +36,7 @@ public class GameLogics {
         for (int i = 0; i < 5; i++) {
             Card card = handData.get(i);
             cardButtons[i].setText(card.toString());
-            cardButtons[i].setTextFill(setColor(card));
+            cardButtons[i].setTextFill(getColor(card));
         }
         firstDealDone = true;
         //now the 5 cards are visible and the player can choose
@@ -51,7 +51,7 @@ public class GameLogics {
                 hand.replace(i);
                 Card newCard = hand.getCard(i);
                 cardButtons[i].setText(newCard.toString());
-                cardButtons[i].setTextFill(setColor(newCard));
+                cardButtons[i].setTextFill(getColor(newCard));
             }
             lockedCards[i] = false;
             unlockCard(i);
@@ -95,7 +95,7 @@ public class GameLogics {
         }
     }
 
-    public Paint setColor(Card card) {
+    public Paint getColor(Card card) {
         if (card.getSuit().equals("S") || card.getSuit().equals("C")) {
             return Color.BLACK;
         } else {

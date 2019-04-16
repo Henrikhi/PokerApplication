@@ -245,7 +245,7 @@ public class PokerMain extends Application {
                 logic.newDoublingCard();
                 double win = logic.highClicked();
                 doublingCard.setText(logic.doublingCard.toString());
-                doublingCard.setTextFill(logic.setColor(logic.doublingCard));
+                doublingCard.setTextFill(logic.getColor(logic.doublingCard));
                 if (win == 0) {
                     doublingText.setText("Too bad. Better luck next time! \n");
                     this.doubleClicked = false;
@@ -268,7 +268,7 @@ public class PokerMain extends Application {
                 logic.newDoublingCard();
                 double win = logic.lowClicked();
                 doublingCard.setText(logic.doublingCard.toString());
-                doublingCard.setTextFill(logic.setColor(logic.doublingCard));
+                doublingCard.setTextFill(logic.getColor(logic.doublingCard));
                 if (win == 0) {
                     doublingText.setText("Too bad. Better luck next time! \n");
                     this.doubleClicked = false;
