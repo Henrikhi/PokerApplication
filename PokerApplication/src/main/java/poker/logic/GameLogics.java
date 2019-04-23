@@ -6,27 +6,38 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import poker.cards.Card;
 import poker.cards.Hand;
+import poker.database.Database;
+import poker.database.User;
 
 public class GameLogics {
 
     public boolean firstDealDone;
-    public double winnings;
     public double bet;
     public boolean[] lockedCards;
     public Button[] cardButtons;
     Hand hand;
     public double latestWin;
     public Card doublingCard;
+    public Database database;
+    public User player;
 
     public GameLogics() {
         this.firstDealDone = false;
-        this.winnings = 000;
         this.bet = 20;
         this.lockedCards = new boolean[5];
         cardButtons = new Button[5];
         this.hand = new Hand();
         this.latestWin = 0;
         this.doublingCard = new Card();
+        this.player = new User();
+
+        try {
+            this.database = new Database();
+        } catch (Exception ex) {
+            System.out.println("Error");
+        }
+        database.init();
+
     }
 
     public void playNewRound() {
@@ -104,15 +115,16 @@ public class GameLogics {
     }
 
     public void insertCoinClicked() {
-        this.winnings += 200;
+        this.player.setWinnings(this.player.getWinnings() + 200);
+        this.player.setMoneyInserted(this.player.getMoneyInserted() + 200);
     }
 
     public void newRound() {
-        this.winnings -= this.bet;
+        this.player.setWinnings(this.player.getWinnings() - this.bet);
     }
 
     public void addWinnings() {
-        this.winnings += this.latestWin;
+        this.player.setWinnings(this.player.getWinnings() + this.latestWin);
         this.latestWin = 0;
     }
 
@@ -157,6 +169,33 @@ public class GameLogics {
         }
         this.latestWin = 0;
         return 0;
+    }
+
+    public boolean userExists(User user) {
+        return this.database.userExists(user);
+    }
+
+    public void createUser(User user) {
+        this.database.createUser(user);
+    }
+
+    public boolean logInOK(User user) {
+        this.player = this.database.logIn(user);
+        if (this.player == null) {
+            this.player = new User();
+            return false;
+        }
+        this.bet = 20;
+        for (int i = 0; i < 5; i++) {
+            cardButtons[i].setText("");
+            cardButtons[i].setTextFill(Color.BLACK);
+        }
+        return true;
+    }
+
+    public void logOutPlayer() {
+        this.database.updateUser(this.player);
+        this.player = new User();
     }
 
 }

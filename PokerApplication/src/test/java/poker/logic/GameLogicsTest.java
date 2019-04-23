@@ -96,22 +96,22 @@ public class GameLogicsTest {
 
     @Test
     public void insertCoinWorks() {
-        double winningsFirst = logic.winnings;
+        double winningsFirst = logic.player.getWinnings();
         logic.insertCoinClicked();
-        assertTrue(logic.winnings - winningsFirst == 200);
+        assertTrue(logic.player.getWinnings() - winningsFirst == 200);
     }
 
     @Test
     public void addWinningsAddsWinnings() {
-        logic.winnings = 100;
+        logic.player.setWinnings(100);
         logic.latestWin = 100;
         logic.addWinnings();
-        assertTrue(logic.winnings == 200);
+        assertTrue(logic.player.getWinnings() == 200);
     }
 
     @Test
     public void addWinningsResetsLatestwin() {
-        logic.winnings = 100;
+        logic.player.setWinnings(100);
         logic.latestWin = 100;
         logic.addWinnings();
         assertTrue(logic.latestWin == 0);
@@ -119,18 +119,18 @@ public class GameLogicsTest {
 
     @Test
     public void newRoundWorks() {
-        logic.winnings = 100;
+        logic.player.setWinnings(100);
         logic.bet = 100;
         logic.newRound();
-        assertTrue(logic.winnings == 0);
+        assertTrue(logic.player.getWinnings() == 0);
     }
 
     @Test
     public void newRoundWorks2() {
-        logic.winnings = 160;
+        logic.player.setWinnings(160);
         logic.bet = 40;
         logic.newRound();
-        assertTrue(logic.winnings == 120);
+        assertTrue(logic.player.getWinnings() == 120);
     }
 
     @Test

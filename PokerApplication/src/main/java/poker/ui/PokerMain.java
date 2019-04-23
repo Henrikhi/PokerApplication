@@ -15,6 +15,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import poker.database.User;
+import poker.logic.GameLogics;
 
 public class PokerMain extends Application {
 
@@ -24,7 +26,8 @@ public class PokerMain extends Application {
     private final int width = 800;
     private final int height = 600;
 
-    private poker.logic.GameLogics logic = new poker.logic.GameLogics();
+    private GameLogics logic = new poker.logic.GameLogics();
+
     private boolean doubleOrCollect = false;
     private boolean doubleClicked = false;
 
@@ -62,10 +65,6 @@ public class PokerMain extends Application {
         exit.setOnMouseClicked(exitClicked -> {
             System.exit(0);
         });
-        logIn.setOnMouseClicked(logInClicked -> {
-            //log in does not yet check if account exists or not.
-            primaryStage.setScene(game);
-        });
 
         //primary game screen
         BorderPane gameLayout = new BorderPane();
@@ -74,7 +73,7 @@ public class PokerMain extends Application {
         VBox centerLayout = new VBox();
         BorderPane bottomLayout = new BorderPane();
 
-        Label winningsLabel = new Label("credits: " + logic.winnings / 100 + "€");
+        Label winningsLabel = new Label("credits: " + logic.player.getWinnings() / 100 + "€");
         winningsLabel.setFont(new Font(20));
         Insets defaultInsets = new Insets(20);
         winningsLabel.setPadding(defaultInsets);
@@ -125,7 +124,7 @@ public class PokerMain extends Application {
         stop.setOnMouseClicked(stopClicked -> {
             if (!logic.firstDealDone && !this.doubleOrCollect) { //can stop playing only if round is not going on
                 //and if player is not in "double or collect"-situation
-                //remember to log out the user!
+                logic.logOutPlayer();
                 primaryStage.setScene(frontPage);
             }
         });
@@ -180,9 +179,9 @@ public class PokerMain extends Application {
                 if (!logic.firstDealDone) { //new round
                     gameLayout.setCenter(centerLayout);
                     roundInfoText.setText("\n Good luck! \n");
-                    if (logic.winnings >= logic.bet) { //can play if credit >= bet
+                    if (logic.player.getWinnings() >= logic.bet) { //can play if credit >= bet
                         logic.newRound();
-                        winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+                        winningsLabel.setText("credits: " + logic.player.getWinnings() / 100 + "€");
                         logic.playNewRound();
                     } else {
                         roundInfoText.setText("You do not have enough credits to continue. \n"
@@ -214,7 +213,7 @@ public class PokerMain extends Application {
         //INSERT COIN
         insertCoin.setOnMouseClicked(insertCoinClicked -> {
             logic.insertCoinClicked();
-            winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+            winningsLabel.setText("credits: " + logic.player.getWinnings() / 100 + "€");
         });
 
         //COLLECT
@@ -224,7 +223,7 @@ public class PokerMain extends Application {
                 roundInfoText.setText("\nYou collected " + logic.latestWin / 100 + "€.\n");
                 doublingText.setText("You collected " + logic.latestWin / 100 + "€. \n");
                 logic.addWinnings();
-                winningsLabel.setText("credits: " + logic.winnings / 100 + "€");
+                winningsLabel.setText("credits: " + logic.player.getWinnings() / 100 + "€");
             }
         });
 
@@ -282,6 +281,30 @@ public class PokerMain extends Application {
                     doublingText.setText("Congratulations! Doubling succesfull. \n"
                             + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
                 }
+            }
+        });
+
+        createAccount.setOnMouseClicked(createAccountClicked -> {
+            User user = new User(accountName.getText(), password.getText());
+            if (!logic.userExists(user)) {
+                logic.createUser(user);
+                System.out.println("account is created"); //this in ui
+            } else {
+                System.out.println("account already existed"); //this in ui
+            }
+        });
+
+        logIn.setOnMouseClicked(logInClicked -> {
+            User user = new User(accountName.getText(), password.getText());
+            if (logic.logInOK(user)) {
+                
+                winningsLabel.setText("credits: " + logic.player.getWinnings() / 100 + "€");
+                bet.setText("bet: " + logic.bet / 100 + "€");
+                roundInfoText.setText("\n\n");
+                gameLayout.setCenter(centerLayout);
+                primaryStage.setScene(game);
+            } else {
+                System.out.println("log in not succesful"); //this in ui
             }
         });
 
