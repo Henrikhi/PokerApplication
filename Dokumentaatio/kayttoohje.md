@@ -33,7 +33,7 @@ ja ruudun alareunassa on kuusi eri nappia, joita klikkaamalla on seuraavat omina
 tietokantaan ja palataan kirjautumisnäkymään. 
 * bet: panoksen määrää voi muuttaa.
 * collect: voitokkaan pelikierroksen tai onnistuneen tuplauksen jälkeen voi voitot kerätä talteen, jolloin pelaajan saldo kasvaa voittojen verran.
-* double: voitokkaan pelikierroksen tai onnistuneen tuplauksen jälkeen voi pelaaja yrittää onneaan voittojen tuplaamisella. Tämä vie [tuplausnäkymään](https://github.com/Henrikhi/ot-harjoitustyo/edit/master/Dokumentaatio/kayttoohje.md#Tuplaaminen).
+* double: voitokkaan pelikierroksen tai onnistuneen tuplauksen jälkeen voi pelaaja yrittää onneaan voittojen tuplaamisella. Tämä vie [tuplausnäkymään](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/kayttoohje.md#Tuplaaminen).
 * play: ensimmäinen tai toinen pelikierros käynnistyy.
 * Insert 2€: pelaajan saldoa kasvatetaan kahdella eurolla, eli tämä kuvastaa kahden euron kolikon syöttämistä pelikoneeseen.
 
