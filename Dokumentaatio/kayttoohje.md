@@ -42,7 +42,7 @@ Kun pelaajalla on krediittejä vähintään panoksen verran, voi pelin aloittaa 
 
 <img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/peli2.png">
 
-Pelaaja voi "lukita" haluamansa kortit klikkaamalla niistä. Kun pelaaja on tyytyväinen, täytyy pelaajan mennä seuraavalle kierrokselle painamalla
+Pelaaja voi "lukita" haluamansa kortit klikkaamalla niistä. Tällöin kortti pienenee lukituksen merkiksi. Lukitut kortit voi mielen muuttuessa vapauttaa klikkaamalla korttia uudelleen. Kun pelaaja on tyytyväinen, täytyy pelaajan mennä seuraavalle kierrokselle painamalla
 uudestaan nappia _play_.
 
 <img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/peli3.png">
