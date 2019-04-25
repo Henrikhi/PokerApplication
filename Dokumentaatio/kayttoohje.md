@@ -28,11 +28,14 @@ Onnistuneen kirjautumisen myötä siirrytään varsinaiseen pelinäkymään
 <img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/peli1.png">
 
 Pelinäkymässä vasemmalla ylhäällä lukee pelaajan saldo, eli credits. Keskellä ruutua on viisi pelikorttia (jotka on alussa kuvapuoli alaspäin),
-ja ruudun alareunassa on kuusi eri nappia. Näistä vasemmanpuoleisin on _stop_, josta painamalla peli lopetetaan, käyttäjä kirjataan ulos, pelaajan tiedot päivitetään
-tietokantaan ja palataan kirjautumisnäkymään. Seuraava nappi on _bet_, jota klikkaamalla voi panoksen määrää muuttaa. Seuraava nappi on _collect_, josta voi pelikierrosten
-jälkeen kerätä voittonsa, jolloin pelaajan saldo kasvaa voittojen verran. Seuraava nappi on _double_, jota painamalla voi voitetun kierroksen jälkeen yrittää onneaan voittojensa tuplaamisessa.
-Seuraava nappi on _play_, jota klikkaamalla voi aloittaa ensimmäisen tai toisen pelikierroksen. Oikeassa alareunassa on nappi _Insert 2€_, jota painamalla
-koneeseen "laitetaan kahden euron kolikko", eli pelaajan saldo kasvaa kahdella eurolla.
+ja ruudun alareunassa on kuusi eri nappia, joita klikkaamalla on seuraavat ominaisuudet:
+* stop: peli lopetetaan, käyttäjä kirjataan ulos, pelaajan tiedot päivitetään
+tietokantaan ja palataan kirjautumisnäkymään. 
+* bet: panoksen määrää voi muuttaa.
+* collect: voitokkaan pelikierroksen tai onnistuneen tuplauksen jälkeen voi voitot kerätä talteen, jolloin pelaajan saldo kasvaa voittojen verran.
+* double: voitokkaan pelikierroksen tai onnistuneen tuplauksen jälkeen voi pelaaja yrittää onneaan voittojen tuplaamisella. Tämä vie [tuplausnäkymään](https://github.com/Henrikhi/ot-harjoitustyo/edit/master/Dokumentaatio/kayttoohje.md#Tuplaaminen).
+* play: ensimmäinen tai toinen pelikierros käynnistyy.
+* Insert 2€: pelaajan saldoa kasvatetaan kahdella eurolla, eli tämä kuvastaa kahden euron kolikon syöttämistä pelikoneeseen.
 
 Ennen kunkin kierroksen alkua pelaajan on mahdollista vaihtaa panosta tai lopettaa peli. Kierrosten keskellä panosta ei voi vaihtaa, eikä peliä voi lopettaa.
 Kun pelaajalla on krediittejä vähintään panoksen verran, voi pelin aloittaa painamalla _play_. Tällöin pelaajalle jaetaan viisi satunnaista korttia.
