@@ -4,6 +4,8 @@ Sovelluksen avulla pelaaja voi pelata pelikonepokeria omalta tietokoneeltaan, va
 
 ## Dokumentaatio
 
+[Käyttöohje](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/kayttoohje.md)
+
 [Vaatimusmäärittely](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/tuntikirjanpito.md)
