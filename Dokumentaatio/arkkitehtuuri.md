@@ -1,6 +1,34 @@
-### Alustava arkkitehtuuri
+### Rakenne
 
-<img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/alustavaArkkitehtuuri2.png">
+<img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/ArkkitehtuuriKuva.png">
+
+## Käyttöliittymä
+
+Käyttöliittymä sisältää kolme erillistä näkymää
+- kirjautuminen
+- pelaaminen
+- tuplaaminen
+
+Kirjautuminen on oma scene-olionsa. Pelaaminen ja tuplaaminen muodostavat yhdessä oman scene-olionsa, joissa asettelussa keskimmäinen komponentti on eri. Pelaamisessa keskellä ruutua on viisi korttia, ja tuplaamisessa yksi kortti ja _high_ ja _low_ napit.
+
+Käyttöliittymä on pyritty eristämään mahdollisimman paljon sovelluslogiikasta, se pyrkii kutsumaan sopivin parametrein sovelluslogiikan toteuttavan olion _GameLogics_ metodeja.
+
+Kun käyttäjä kirjautuu pelaamisen jälkeen ulos painamalla _stop_-nappia, päivittyy käyttäjän tiedot tietokantaan _GameLogics_-luokan _logOutPlayer()_-metodin avulla, joka kutsuu tietokantaa päivittävää metodia _updateUser(User user)_. 
+
+## Sovelluslogiikka
+
+Sovelluksen logiikasta yksin huolehtii _logic_-pakkauksen luokka _GameLogics_. Luokka pääsee käsiksi _cards_-pakkauksen luokkiin _Card_ ja _Hand_, joista _Hand_ kommunikoi _DeckOfCards_-luokan kanssa. Tämän lisäksi _GameLogics_:lla on yhteys _database_-paketin luokkiin _Database_ ja _User_.
+
+## Tietojen pysyväistallennus
+
+Pakkauksen _poker.database_ luokka _Database_  huolehtii luokan _User_ tietojen tallentamisesta tietokantaan. _GameLogics_ ohjaa tietojen tallentamista omilla metodeillaan, jotka antavat käskyjä luokalle _Database_. Tiedot tallennetaan _database.db_ nimiseen tiedostoon. Käyttäjien tiedot talletetaan seuraavassa muodossa:
+
+<pre>
+käyttäjänimi;salasana;käyttäjän saldo;koneeseen syötetty rahamäärä
+Henrik;HenrikinLoistavaSalasana;1200;600
+Roope;RoopenKeskinkertainenSalasana;0;1000
+</pre>
+Tässä rahamäärät on sentteinä.
 
 ### Päätoiminnallisuudet
 
