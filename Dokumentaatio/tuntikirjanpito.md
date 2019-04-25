@@ -12,4 +12,5 @@
 | 12.4   | 6   | käyttöliittymä hiottu timanttiin, testejä lisätty, tuplaus onnistuu. Tietokantoja lukuunottamatta täysin toimiva sovellus. |
 | 16.4   | 2   | arkkitehtuuri-tiedostoon sekvenssikaavion tekeminen, sovelluksen koodin pieni viilaaminen. |
 | 23.4   | 5   | tietokantojen tekeminen |
-| yht   | 28   | | 
+| 25.4   |  3  | javadoccien luominen, copypasten vähentäminen, maksimipanos 2€, arkkitehtuuridokumentin päivittäminen| 
+| yht   | 31   | | 
