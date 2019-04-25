@@ -1,6 +1,5 @@
 package poker.cards;
 
-import poker.cards.Card;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,14 +31,31 @@ public class DeckOfCards {
 
     }
 
+    /**
+     * Method adds a given card into deck, which is ArrayList of Card-object.
+     *
+     * @param newCard the card to be put in deck
+     */
     public void addToDeck(Card newCard) {
         this.deck.add(newCard);
     }
 
+    /**
+     * Checks how many cards are there in the deck.
+     *
+     * @return number of cards in deck
+     */
     public int howManyCardsLeft() {
         return this.deck.size();
     }
 
+    /**
+     * Method deals a random card from the deck: 1. Check if there are cards in
+     * deck 2. If there are, remove and return a random card from deck. 3. If
+     * there are no cards in deck, return null.
+     *
+     * @return random card if can, else null
+     */
     public Card dealRandomCard() {
         int cardsLeft = this.deck.size();
         int chosen;

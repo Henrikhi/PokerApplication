@@ -62,6 +62,17 @@ public class GameLogicsTest {
         logic.changeBet();
         logic.changeBet();
         logic.changeBet();
+        assertTrue(logic.bet == 200);
+    }
+
+    @Test
+    public void changeBetWorks5() {
+        logic.changeBet();
+        logic.changeBet();
+        logic.changeBet();
+        logic.changeBet();
+        logic.changeBet();
+        logic.changeBet();
         assertTrue(logic.bet == 20);
     }
 
@@ -170,7 +181,7 @@ public class GameLogicsTest {
         logic.doublingCard = new Card(13, "D");
         assertTrue(logic.highClicked() == 2);
     }
-    
+
     @Test
     public void highClickedWorks5() {
         logic.doublingCard = new Card(6, "D");
@@ -188,33 +199,29 @@ public class GameLogicsTest {
         logic.doublingCard = new Card(6, "C");
         assertTrue(logic.lowClicked() == 2);
     }
-    
+
     @Test
     public void lowClickedWorks2() {
         logic.doublingCard = new Card(7, "C");
         assertTrue(logic.lowClicked() == 0);
     }
-    
+
     @Test
     public void lowClickedWorks3() {
         logic.doublingCard = new Card(7, "D");
         assertTrue(logic.lowClicked() == 1);
     }
-    
+
     @Test
     public void lowClickedWorks4() {
         logic.doublingCard = new Card(10, "D");
         assertTrue(logic.lowClicked() == 0);
     }
-    
+
     @Test
     public void lowClickedWorks5() {
         logic.doublingCard = new Card(13, "C");
         assertTrue(logic.lowClicked() == 0);
     }
-
-
-
-
 
 }
