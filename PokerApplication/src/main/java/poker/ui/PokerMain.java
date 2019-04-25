@@ -300,7 +300,7 @@ public class PokerMain extends Application {
                 
                 winningsLabel.setText("credits: " + logic.player.getWinnings() / 100 + "€");
                 bet.setText("bet: " + logic.bet / 100 + "€");
-                roundInfoText.setText("\n\n");
+                roundInfoText.setText("\nWelcome " + logic.player.getUserName() + "! \n");
                 gameLayout.setCenter(centerLayout);
                 primaryStage.setScene(game);
             } else {
