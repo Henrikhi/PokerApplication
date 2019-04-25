@@ -25,10 +25,10 @@ Pakkauksen _poker.database_ luokka _Database_  huolehtii luokan _User_ tietojen 
 
 <pre>
 käyttäjänimi;salasana;käyttäjän saldo;koneeseen syötetty rahamäärä
-Henrik;HenrikinLoistavaSalasana;1200;600
-Roope;RoopenKeskinkertainenSalasana;0;1000
+Henrik;Koira300;1200;600
+Roope;Kissa2000;0;1000
 </pre>
-Tässä rahamäärät on sentteinä.
+Tässä rahamäärät on sentteinä, ja salasanat huonoja.
 
 ### Päätoiminnallisuudet
 
