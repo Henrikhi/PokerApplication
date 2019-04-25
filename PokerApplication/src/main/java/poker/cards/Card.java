@@ -53,10 +53,10 @@ public class Card {
 
     /**
      * Method turns the value of the card into corresponding string. For
-     * example, 4 -> "4", and 1 -> "A", 11 -> "J" etc.
+     * example, 4: "4", and 1: "A", 11: "J" etc.
      *
-     * @return the value of the cards from 2-10 in String, but 1 -> "A", 11 ->
-     * "J" etc.
+     * @return the value of the cards from 2-10 in String, but 1: "A", 11: "J"
+     * etc.
      */
     public String getValueString() {
         if (this.value == 1) {
@@ -113,7 +113,7 @@ public class Card {
      * Method checks if card is a red seven, because red sevens have special
      * properties in doubling.
      *
-     * @return true if card is a red seven. Red ofcourse means heards or
+     * @return true if card is a red seven. Red ofcourse means hearts or
      * diamonds.
      */
     public boolean isRedSeven() {
