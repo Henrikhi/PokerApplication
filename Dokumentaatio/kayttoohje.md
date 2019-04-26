@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [PokerApp.jar](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/viikko6)
+Lataa tiedosto [PokerApp.jar](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/Viikko6)
 
 ## Ohjelman käynnistäminen
 
