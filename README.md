@@ -15,7 +15,7 @@ Sovelluksen avulla pelaaja voi pelata pelikonepokeria omalta tietokoneeltaan, va
 ## Releaset
 
 * [Viikko 5](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/viikko5)
-* [Viikko 6](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/viikko6)
+* [Viikko 6](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/Viikko6)
 
 ## Komentorivitoiminnot
 
