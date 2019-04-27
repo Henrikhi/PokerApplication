@@ -7,10 +7,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -45,7 +47,10 @@ public class PokerMain extends Application {
         TextField accountName = new TextField("account name");
         accountName.setMaxWidth(width / 4);
         accountName.setFont(new Font(15));
-        TextField password = new TextField("password");
+        Label errorLabel = new Label(" \n ");
+        errorLabel.setFont(new Font(15));
+        errorLabel.setTextFill(Color.RED);
+        PasswordField password = new PasswordField();
         password.setMaxWidth(width / 4);
         password.setFont(new Font(15));
         Button logIn = new Button("log in");
@@ -58,7 +63,7 @@ public class PokerMain extends Application {
         exit.setMaxWidth(width / 4);
         exit.setFont(new Font(15));
 
-        frontPageLayout.getChildren().addAll(accountName, password, logIn, createAccount, exit);
+        frontPageLayout.getChildren().addAll(errorLabel, accountName, password, logIn, createAccount, exit);
         frontPageLayout.setSpacing(20);
         frontPageLayout.setAlignment(Pos.CENTER);
         frontPage = new Scene(frontPageLayout, width, height);
@@ -125,6 +130,7 @@ public class PokerMain extends Application {
             if (!logic.firstDealDone && !this.doubleOrCollect) { //can stop playing only if round is not going on
                 //and if player is not in "double or collect"-situation
                 logic.logOutPlayer();
+                errorLabel.setText(" \n ");
                 primaryStage.setScene(frontPage);
             }
         });
@@ -285,26 +291,47 @@ public class PokerMain extends Application {
         });
 
         createAccount.setOnMouseClicked(createAccountClicked -> {
-            User user = new User(accountName.getText(), password.getText());
-            if (!logic.userExists(user)) {
-                logic.createUser(user);
-                System.out.println("account is created"); //this in ui
-            } else {
-                System.out.println("account already existed"); //this in ui
+            boolean invalidAccount = false;
+            String name = accountName.getText();
+            String psw = password.getText();
+            if (name.length() < 5 || name.length() > 15) {
+                invalidAccount = true;
+                errorLabel.setText("Username has to be 5-15 characters long.\nPlease choose a valid username.");
+            }
+            if (!name.equals(name.trim())) {
+                invalidAccount = true;
+                errorLabel.setText("Username can not begin or end with white space.\nPlease choose a valid username.");
+            }
+            if (name.contains("  ")) {
+                invalidAccount = true;
+                errorLabel.setText("Username can not have more than one white space in a row.\nPlease choose a valid username.");
+            }
+            if (psw.length() < 5 || psw.length() > 20) {
+                invalidAccount = true;
+                errorLabel.setText("Password has to be 5-20 characters long.\nPlease choose a valid password.");
+            }
+            if (!invalidAccount) {
+                User user = new User(name, psw);
+                if (!logic.userExists(user)) {
+                    logic.createUser(user);
+                    errorLabel.setText("\nAccount succesfully created.");
+                } else {
+                    errorLabel.setText("Account already exists.\nPlease choose different username.");
+                }
             }
         });
 
         logIn.setOnMouseClicked(logInClicked -> {
             User user = new User(accountName.getText(), password.getText());
             if (logic.logInOK(user)) {
-                
+
                 winningsLabel.setText("credits: " + logic.player.getWinnings() / 100 + "€");
                 bet.setText("bet: " + logic.bet / 100 + "€");
                 roundInfoText.setText("\nWelcome " + logic.player.getUserName() + "! \n");
                 gameLayout.setCenter(centerLayout);
                 primaryStage.setScene(game);
             } else {
-                System.out.println("log in not succesful"); //this in ui
+                errorLabel.setText("Invalid username of password.\nPlease try again.");
             }
         });
 
