@@ -196,48 +196,32 @@ public class GameLogics {
     }
 
     /**
-     * In doubling, if "high" is clicked, this method checks if the player chose
-     * correctly or not.
+     * Method checks if doubling was successful or not.
      *
-     * @return 2 if player was correct, 1 if doublingCard was a red ace, else 0.
+     * @param lowWasClicked true if "low" was clicked. False if "high" was
+     * clicked.
+     * @return
      */
-    public int highClicked() {
+    public int doublingCardClicked(boolean lowWasClicked) {
         Card card = this.doublingCard;
         if (card.isBlackSeven()) {
             this.latestWin = 0;
-            return 0;
+            return -1;
         }
         if (card.isRedSeven()) {
             return 1;
         }
-        if (card.isHighCard()) {
-            this.latestWin *= 2;
-            return 2;
+        if (lowWasClicked) {
+            if (card.isLowCard()) {
+                this.latestWin *= 2;
+                return 2;
+            }
+        } else {
+            if (card.isHighCard()) {
+                this.latestWin *= 2;
+                return 2;
+            }
         }
-        this.latestWin = 0;
-        return 0;
-    }
-
-    /**
-     * In doubling, if "low" is clicked, this method checks if the player chose
-     * correctly or not.
-     *
-     * @return 2 if player was correct, 1 if doublingCard was a red ace, else 0.
-     */
-    public int lowClicked() {
-        Card card = this.doublingCard;
-        if (card.isBlackSeven()) {
-            this.latestWin = 0;
-            return 0;
-        }
-        if (card.isRedSeven()) {
-            return 1;
-        }
-        if (card.isLowCard()) {
-            this.latestWin *= 2;
-            return 2;
-        }
-        this.latestWin = 0;
         return 0;
     }
 

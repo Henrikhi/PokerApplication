@@ -244,51 +244,47 @@ public class PokerMain extends Application {
             }
         });
 
-        //HIGH CARD CHOSEN
-        buttonHigh.setOnMouseClicked(highClicked -> {
-            if (doubleClicked) {
-                logic.newDoublingCard();
-                double win = logic.highClicked();
-                doublingCard.setText(logic.doublingCard.toString());
-                doublingCard.setTextFill(logic.getColor(logic.doublingCard));
-                if (win == 0) {
-                    doublingText.setText("Too bad. Better luck next time! \n");
-                    this.doubleClicked = false;
-                    this.doubleOrCollect = false;
-                } else if (win == 1) {
-                    doubleClicked = false;
-                    doublingText.setText("Red 7! You get to keep your winnings. \n"
-                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
-                } else if (win == 2) {
-                    doubleClicked = false;
-                    doublingText.setText("Congratulations! Doubling succesfull. \n"
-                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
+        //low or high clicked
+        Button[] LowAndHighButtons = new Button[2];
+        LowAndHighButtons[0] = buttonLow;
+        LowAndHighButtons[1] = buttonHigh;
+        for (int i = 0; i < 2; i++) {
+            boolean lowWasClicked = i == 0;
+            LowAndHighButtons[i].setOnMouseClicked(lowOrHighClicked -> {
+                if (doubleClicked) {
+                    logic.newDoublingCard();
+                    double win = logic.doublingCardClicked(lowWasClicked);
+                    doublingCard.setText(logic.doublingCard.toString());
+                    doublingCard.setTextFill(logic.getColor(logic.doublingCard));
+                    if (win == -1) {
+                        doublingText.setText("Black 7! Bad luck.\nBetter luck next time!");
+                        this.doubleClicked = false;
+                        this.doubleOrCollect = false;
+                    } else if (win == 0) {
+                        doublingText.setText("Too bad. Better luck next time! \n");
+                        this.doubleClicked = false;
+                        this.doubleOrCollect = false;
+                    } else if (win == 1) {
+                        doubleClicked = false;
+                        doublingText.setText("Red 7! You get to keep your winnings. \n"
+                                + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
+                    } else if (win == 2) {
+                        doubleClicked = false;
+                        if (logic.latestWin >= 5000) {
+                            doublingText.setText("Congratulations! You have doubled yourself to the top! \n"
+                                    + "Your latest win of " + logic.latestWin / 100 + "€ has been deposited to your account.");
+                            logic.addWinnings();
+                            winningsLabel.setText("credits: " + logic.player.getWinnings() / 100 + "€");
+                            this.doubleOrCollect = false;
+                        } else {
+                            doublingText.setText("Congratulations! Doubling succesfull. \n"
+                                    + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
+                        }
+                    }
                 }
-            }
-        });
 
-        //LOW CARD CHOSEN
-        buttonLow.setOnMouseClicked(lowClicked -> {
-            if (doubleClicked) {
-                logic.newDoublingCard();
-                double win = logic.lowClicked();
-                doublingCard.setText(logic.doublingCard.toString());
-                doublingCard.setTextFill(logic.getColor(logic.doublingCard));
-                if (win == 0) {
-                    doublingText.setText("Too bad. Better luck next time! \n");
-                    this.doubleClicked = false;
-                    this.doubleOrCollect = false;
-                } else if (win == 1) {
-                    doubleClicked = false;
-                    doublingText.setText("Red 7! You get to keep your winnings. \n"
-                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
-                } else if (win == 2) {
-                    doubleClicked = false;
-                    doublingText.setText("Congratulations! Doubling succesfull. \n"
-                            + "You can collect your winnings or try to double " + logic.latestWin / 100 + "€ again.");
-                }
-            }
-        });
+            });
+        }
 
         createAccount.setOnMouseClicked(createAccountClicked -> {
             boolean invalidAccount = false;
