@@ -11,11 +11,12 @@ Sovelluksella on tällä hetkellä ainoastaan yksi käyttäjärooli eli _pelaaja
 ## Käyttöliittymäluonnos
 
 Sovelluksessa on kirjautumisnäkymä eli etusivu, ja pelinäkymä. Pelinäkymä koostuu tavallisesta pelinäkymästä, sekä tuplausnäkymästä.
+
 <img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/kirjautumisNakyma.png">
 
 Etusivu: Yksinkertaisessa näkymässä on tekstilaatikot tunnukselle ja salasanalle, sekä kirjautumisnappi ja uuden käyttäjän luomis -nappi. Onnistuneesta kirjautumisesta siirrytään pelinäkymään.
 
-<img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/peli1">
+<img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/peli1.png">
 
 Pelinäkymä: Ruudun vasemmassa yläkulmassa näkyy pelaajan saldo (credits), sekä alhaalla on napit pelin lopettamiselle (stop), panoksen muuttamiselle (bet), voittojen keräämiselle (collect), voittojen tuplaamiselle (double), sekä pelin käynnistämiselle (play). Oikeassa alanurkassa on nappi rahan lisäämiselle koneeseen (Insert 2€). Keskellä ruutua on viisi kuvapuoli alaspäin käännettyä korttia. Lopettaminen kirjaa käyttäjän ulos ja vie etusivulle, muuten pelaaminen tapahtuu pelinäkymässä. Voitokkan kierroksen jälkeen pelaajalla on mahdollisuus tuplaamiseen, joka vie tuplausnäkymään.
 
