@@ -9,14 +9,7 @@ Ohjelma käynnistetään komennolla
 ```
 java -jar PokerApp.jar
 ```
-Huom! Ohjelma luo tai muokkaa database.db -tiedostoa siinä kansiossa, josta java -jar -komento on annettu. On siis eri asia, ajetaanko komento
-```
-java -jar PokerApp.jar
-```
-vaiko esimerkiksi
-```
-java -jar Downloads/PokerApp.jar
-```
+Huom! Ohjelma luo (tai jos tiedosto on olemassa, niin muokkaa) database.db -tiedostoa siinä kansiossa, josta java -jar -komento on annettu. Jos ohjelma ajetaan eri kansiosta eri kerroilla, syntyy useita database.db-tiedostoja, eivätkä ne ole synkronoituja keskenään. Tämän takia sovellusta tulee ajaa aina samalla tavalla.
 
 ## Käyttäjän luominen ja kirjautuminen
 
