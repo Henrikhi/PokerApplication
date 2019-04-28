@@ -291,9 +291,10 @@ public class PokerMain extends Application {
             boolean invalidAccount = false;
             String name = accountName.getText();
             String psw = password.getText();
-            if (name.length() < 5 || name.length() > 15) {
+            
+            if (psw.length() < 5 || psw.length() > 20) {
                 invalidAccount = true;
-                errorLabel.setText("Username has to be 5-15 characters long.\nPlease choose a valid username.");
+                errorLabel.setText("Password has to be 5-20 characters long.\nPlease choose a valid password.");
             }
             if (!name.equals(name.trim())) {
                 invalidAccount = true;
@@ -303,10 +304,11 @@ public class PokerMain extends Application {
                 invalidAccount = true;
                 errorLabel.setText("Username can not have more than one white space in a row.\nPlease choose a valid username.");
             }
-            if (psw.length() < 5 || psw.length() > 20) {
+            if (name.length() < 5 || name.length() > 15) {
                 invalidAccount = true;
-                errorLabel.setText("Password has to be 5-20 characters long.\nPlease choose a valid password.");
+                errorLabel.setText("Username has to be 5-15 characters long.\nPlease choose a valid username.");
             }
+
             if (!invalidAccount) {
                 User user = new User(name, psw);
                 if (!logic.userExists(user)) {

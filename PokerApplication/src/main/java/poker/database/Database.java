@@ -5,7 +5,7 @@ import java.sql.*;
 public class Database {
 
     String address;
-    
+
     public Database(String address) throws ClassNotFoundException {
         this.address = address;
     }
@@ -60,13 +60,10 @@ public class Database {
             PreparedStatement getUserDataStatement = conn.prepareStatement("SELECT * FROM User WHERE username = ?");
             getUserDataStatement.setString(1, user.getUserName());
             ResultSet rs = getUserDataStatement.executeQuery();
+
             String actualPassword = rs.getString("password");
             double actualWinnings = (double) rs.getInt("credits");
             double actualInserts = (double) rs.getInt("inserts");
-
-            if (actualPassword == null) {
-                return null;
-            }
 
             if (actualPassword.equals(user.getPassword())) {
                 user.setWinnings(actualWinnings);
@@ -75,9 +72,7 @@ public class Database {
             } else {
                 return null;
             }
-
         } catch (Throwable t) {
-            System.out.println(t.getMessage());
             return null;
         }
     }
@@ -90,7 +85,7 @@ public class Database {
             updateUserStatement.setString(3, user.getUserName());
             updateUserStatement.executeUpdate();
         } catch (Throwable t) {
-            System.out.println(t.getMessage());
+            System.out.println("error updating the user to the database: " + t.getMessage());
         }
     }
 

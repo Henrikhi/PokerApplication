@@ -97,8 +97,7 @@ public class Hand {
      * @return the value of the hand in Integer. For example, royal flush is 25,
      * pair is 1. If the hand is worthless, returns 0.
      */
-    public int checkHand() { //return the value of the hand. Returns an integer
-        //winnings for the round = bet * returned integer.
+    public int checkHand() { 
         this.first = this.hand.get(0);
         this.second = this.hand.get(1);
         this.third = this.hand.get(2);
@@ -111,6 +110,7 @@ public class Hand {
         sameValues[third.getValue()]++;
         sameValues[fourth.getValue()]++;
         sameValues[fifth.getValue()]++;
+        
         int pairsFound = 0;
         boolean threeOfAKind = false;
         boolean fourOfAKind = false;
@@ -164,7 +164,7 @@ public class Hand {
     }
 
     /**
-     * Checks if the hand is straigh flush. Calls for sub methods straight() and
+     * Checks if the hand is straight flush. Calls for sub methods straight() and
      * flush().
      *
      * @return true, if straight() and flush() return true. Else false false
