@@ -32,7 +32,7 @@ public class GameLogics {
         this.player = new User();
 
         try {
-            this.database = new Database();
+            this.database = new Database("jdbc:sqlite:database.db");
         } catch (Exception ex) {
             System.out.println("Error");
         }

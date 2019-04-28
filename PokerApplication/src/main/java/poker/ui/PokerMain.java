@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import poker.database.Database;
 import poker.database.User;
 import poker.logic.GameLogics;
 

@@ -4,12 +4,14 @@ import java.sql.*;
 
 public class Database {
 
-    public Database() throws ClassNotFoundException {
+    String address;
+    
+    public Database(String address) throws ClassNotFoundException {
+        this.address = address;
     }
 
     public Connection getConnection() throws SQLException, ClassNotFoundException {
-        String adress = "jdbc:sqlite:database.db";
-        return DriverManager.getConnection(adress);
+        return DriverManager.getConnection(this.address);
     }
 
     public boolean init() {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package poker.database;
 
 import org.junit.After;
@@ -12,34 +7,56 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Henrik Hirvonen
- */
 public class UserTest {
-    
-    public UserTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+    User user;
+    User userEmpty;
+
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        this.user = new User("testname", "testpassword");
+        this.userEmpty = new User();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void winningsIs0InTheBeginning() {
+        assertTrue(user.getWinnings() == 0);
+    }
+
+    @Test
+    public void insertsIs0InTheBeginning() {
+        assertTrue(user.getMoneyInserted() == 0);
+    }
+
+    @Test
+    public void emptyUserUsername() {
+        assertEquals(userEmpty.getUserName(), "");
+    }
+
+    @Test
+    public void emptyUserPassword() {
+        assertEquals(userEmpty.getPassword(), "");
+    }
+
+    @Test
+    public void emptyUserWinnings() {
+        assertTrue(userEmpty.getWinnings() == 0);
+    }
+
+    @Test
+    public void emptyUserInserts() {
+        assertTrue(userEmpty.getMoneyInserted() == 0);
+    }
+
+    @Test
+    public void testSetWinnings() {
+        user.setWinnings(100);
+        assertTrue(user.getWinnings() == 100);
+    }
+
+    @Test
+    public void testSetMoneyInserted() {
+        user.setMoneyInserted(100);
+        assertTrue(user.getMoneyInserted() == 100);
+    }
 }

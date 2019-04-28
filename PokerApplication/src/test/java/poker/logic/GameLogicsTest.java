@@ -155,73 +155,73 @@ public class GameLogicsTest {
     @Test
     public void highClickedWorks0() {
         logic.doublingCard = new Card(7, "S");
-        assertTrue(logic.highClicked() == 0);
+        assertTrue(logic.doublingCardClicked(false) == -1);
     }
 
     @Test
     public void highClickedWorks1() {
         logic.doublingCard = new Card(1, "H");
-        assertTrue(logic.highClicked() == 0);
+        assertTrue(logic.doublingCardClicked(false) == 0);
     }
 
     @Test
     public void highClickedWorks2() {
         logic.doublingCard = new Card(7, "H");
-        assertTrue(logic.highClicked() == 1);
+        assertTrue(logic.doublingCardClicked(false) == 1);
     }
 
     @Test
     public void highClickedWorks3() {
         logic.doublingCard = new Card(8, "S");
-        assertTrue(logic.highClicked() == 2);
+        assertTrue(logic.doublingCardClicked(false) == 2);
     }
 
     @Test
     public void highClickedWorks4() {
         logic.doublingCard = new Card(13, "D");
-        assertTrue(logic.highClicked() == 2);
+        assertTrue(logic.doublingCardClicked(false) == 2);
     }
 
     @Test
     public void highClickedWorks5() {
         logic.doublingCard = new Card(6, "D");
-        assertTrue(logic.highClicked() == 0);
+        assertTrue(logic.doublingCardClicked(false) == 0);
     }
 
     @Test
     public void lowClickedWorks0() {
         logic.doublingCard = new Card(1, "C");
-        assertTrue(logic.lowClicked() == 2);
+        assertTrue(logic.doublingCardClicked(true) == 2);
     }
 
     @Test
     public void lowClickedWorks1() {
         logic.doublingCard = new Card(6, "C");
-        assertTrue(logic.lowClicked() == 2);
+        assertTrue(logic.doublingCardClicked(true) == 2);
     }
 
     @Test
     public void lowClickedWorks2() {
         logic.doublingCard = new Card(7, "C");
-        assertTrue(logic.lowClicked() == 0);
+        assertTrue(logic.doublingCardClicked(true) == -1);
     }
 
     @Test
     public void lowClickedWorks3() {
         logic.doublingCard = new Card(7, "D");
-        assertTrue(logic.lowClicked() == 1);
+        assertTrue(logic.doublingCardClicked(true) == 1);
     }
 
     @Test
     public void lowClickedWorks4() {
         logic.doublingCard = new Card(10, "D");
-        assertTrue(logic.lowClicked() == 0);
+        assertTrue(logic.doublingCardClicked(true) == 0);
     }
 
     @Test
     public void lowClickedWorks5() {
         logic.doublingCard = new Card(13, "C");
-        assertTrue(logic.lowClicked() == 0);
+        assertTrue(logic.doublingCardClicked(true) == 0);
     }
 
 }
