@@ -14,5 +14,6 @@
 | 23.4   | 5   | tietokantojen tekeminen |
 | 25.4   | 3  | javadoccien luominen, copypasten vähentäminen, käyttöohjeiden tekeminen, arkkitehtuuridokumentin päivittäminen| 
 | 26.4   | 1  | copypasten vähentäminen, lisätty sisäänkirjautumisrajoitteita ja virhe-ilmoituksia| 
-| 27.4   | 1  | copypasten vähentäminen, tuplaukselle 50e maksimiraja| 
-| yht   | 33   | | 
+| 27.4   | 1  | jatkettu eilistä| 
+| 28.4   | 3  | jatkettu eilistä, tuplaukselle 50e maksimiraja, testien lisääminen, vaatimuusmäärittelyn päivittäminen|
+| yht   | 38   | | 
