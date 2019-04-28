@@ -48,7 +48,7 @@ uudestaan nappia _play_.
 
 <img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/peli3.png">
 
-Toisen kierroksen jälkeen tarkistetaan, tuliko pelaajalle voittoja. Mikäli pelaaja voitti, voi hän kerätä voittonsa napista _collect_, tai koittaa
+Toisen kierroksen alussa lukitsemattomat kortit korvataan satunnaisilla korteilla. Tämän jälkeen tarkistetaan, tuliko pelaajalle voittoja. Mikäli pelaaja voitti, voi hän kerätä voittonsa napista _collect_, tai koittaa
 onneaan voittojensa tuplaamisessa painamalla napista _double_. Mikäli voittoja ei tullut, voi pelaaja aloittaa uuden pelin napista _play_.
 
 ## Tuplaaminen
@@ -58,7 +58,7 @@ Mikäli onnistuneen kierroksen jälkeen pelaaja päättää koittaa onneaan voit
 <img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/tuplaus1.png">
 
 Tuplausnäkymässä pelaajan tulee arvata, onko ruudun keskellä oleva kortti suuri (8-K), vai pieni (A-6) valitsemalla nappi _high_ tai _low_.
-Mikäli pelaaja arvasi oikein, hän voi kerätä nyt tuplautuneet voittonsa, tai yrittää tuplata voittoja uudelleen. Mikäli tuplaus meni pieleen,
+Mikäli pelaaja arvasi oikein, hän voi kerätä nyt tuplautuneet voittonsa, tai yrittää tuplata voittoja uudelleen, ellei hän ole ylittänyt tuplauksen kattorajaa: 50 euroa. Mikäli tuplaus meni pieleen,
 pelaaja voi jatkaa pelaamista napista _play_, tai lopettaa napista _stop_.
 
 <img src="https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/Tiedostoja/tuplaus2.png">
