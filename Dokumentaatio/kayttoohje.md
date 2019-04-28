@@ -9,6 +9,14 @@ Ohjelma käynnistetään komennolla
 ```
 java -jar PokerApp.jar
 ```
+Huom! Ohjelma luo tai muokkaa database.db -tiedostoa siinä kansiossa, josta java -jar -komento on annettu. On siis eri asia, ajetaanko komento
+```
+java -jar PokerApp.jar
+```
+vaiko esimerkiksi
+```
+java -jar Downloads/PokerApp.jar
+```
 
 ## Käyttäjän luominen ja kirjautuminen
 
