@@ -132,6 +132,8 @@ public class PokerMain extends Application {
                 //and if player is not in "double or collect"-situation
                 logic.logOutPlayer();
                 errorLabel.setText(" \n ");
+                accountName.setText("account name");
+                password.setText("");
                 primaryStage.setScene(frontPage);
             }
         });
@@ -205,6 +207,7 @@ public class PokerMain extends Application {
                     }
                 }
             }
+            logic.updatePlayer();
         });
 
         //BET
@@ -291,7 +294,7 @@ public class PokerMain extends Application {
             boolean invalidAccount = false;
             String name = accountName.getText();
             String psw = password.getText();
-            
+
             if (psw.length() < 5 || psw.length() > 20) {
                 invalidAccount = true;
                 errorLabel.setText("Password has to be 5-20 characters long.\nPlease choose a valid password.");

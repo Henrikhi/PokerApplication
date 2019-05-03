@@ -269,12 +269,20 @@ public class GameLogics {
     }
 
     /**
-     * Method logs out the user. This means that the data of the player are
-     * updated to the database with method database.updateUser(User user).
+     * Method logs out the user: updates the user data in database with
+     * updatePlayer() and changes this.player into new User().
      */
     public void logOutPlayer() {
-        this.database.updateUser(this.player);
+        updatePlayer();
         this.player = new User();
+    }
+
+    /**
+     * Method updates the user data in the database with
+     * database.updateUser(this.player).
+     */
+    public void updatePlayer() {
+        this.database.updateUser(this.player);
     }
 
 }
