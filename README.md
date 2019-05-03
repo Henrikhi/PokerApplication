@@ -12,6 +12,8 @@ Sovelluksen avulla pelaaja voi pelata pelikonepokeria omalta tietokoneeltaan, va
 
 [Arkkitehtuuri](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/testaus.md)
+
 ## Releaset
 * [loppupalautus](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/loppupalautus)
 * [Viikko 6](https://github.com/Henrikhi/ot-harjoitustyo/releases/tag/Viikko6)
