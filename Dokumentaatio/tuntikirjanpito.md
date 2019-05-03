@@ -16,4 +16,5 @@
 | 26.4   | 1  | copypasten vähentäminen, lisätty sisäänkirjautumisrajoitteita ja virhe-ilmoituksia| 
 | 27.4   | 1  | jatkettu eilistä| 
 | 28.4   | 3  | jatkettu eilistä, tuplaukselle 50e maksimiraja, testien lisääminen, vaatimuusmäärittelyn päivittäminen|
-| yht   | 38   | | 
+| 3.5   | 2  | testausdokumentin tekeminen|
+| yht   | 40   | | 
