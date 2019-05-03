@@ -41,7 +41,3 @@ Sovellusta on testattu tietokantatiedoston _database.db_ kanssa, sekä ilman sit
 ### Toiminnallisuudet
 
 Kaikki [määrittelydokumentin](https://github.com/Henrikhi/ot-harjoitustyo/blob/master/Dokumentaatio/vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä. Lisäksi sovellusta on testattu virheiden varalta klikkailemalla eri nappuloita silloin, kun niitä ei kuuluisi klikata. Esimerkiksi kesken kierroksen panosta ei voi vaihtaa, eikä voittoja voi kerätä useaan otteeseen.
-
-## Sovellukseen jääneet laatuongelmat
-
-Sovellus vaatii, että tietokantataulu on samassa sijainnissa, kuin mistä jar-tiedosto ajetaan. Mikäli PokerApp.jar ajetaan eri kansioista käsin (vaikka jar pysyisi paikallaan), luo jokainen komento uuden tietokantatiedoston, ellei kyseisessä kansiossa sellaista ole entuudestaan. Tämän takia sovellusta tulee ajaa aina samasta sijainnista, mieluiten samasta kansiosta, kuin missä jar sijaitsee.
